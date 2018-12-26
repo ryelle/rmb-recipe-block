@@ -7,7 +7,6 @@ import {
 	BlockAlignmentToolbar,
 	BlockControls,
 	InnerBlocks,
-	RichText,
 } from '@wordpress/editor';
 import { registerBlockType } from '@wordpress/blocks';
 
@@ -15,6 +14,9 @@ import { registerBlockType } from '@wordpress/blocks';
  * Internal dependencies
  */
 import '../css/recipe-block.scss';
+import './blocks/recipe-meta';
+import './blocks/recipe-ingredients';
+import './blocks/recipe-directions';
 
 registerBlockType( 'ryelle/recipe', {
 	title: __( 'Recipe Block', 'rmb-recipe-block' ),
@@ -35,13 +37,29 @@ registerBlockType( 'ryelle/recipe', {
 	},
 
 	edit( { attributes, setAttributes, className } ) {
-		const { align, difficulty, directions, ingredients, serving, time } = attributes;
-
+		const { align } = attributes;
 		const classes = [ className, 'rmb-recipe-block' ];
 
 		const template = [
 			[ 'core/image', {} ],
 			[ 'core/heading', { placeholder: __( 'Recipe Title', 'rmb-recipe-block' ) } ],
+			[ 'ryelle/recipe-meta' ],
+			[ 'ryelle/recipe-ingredients' ],
+			[ 'ryelle/recipe-directions' ],
+		];
+		const allowedBlocks = [
+			'core/cover',
+			'core/gallery',
+			'core/heading',
+			'core/image',
+			'core/list',
+			'core/paragraph',
+			'core/separator',
+			'core/spacer',
+			'core/video',
+			'ryelle/recipe-meta',
+			'ryelle/recipe-ingredients',
+			'ryelle/recipe-directions',
 		];
 
 		return (
@@ -54,51 +72,10 @@ registerBlockType( 'ryelle/recipe', {
 					/>
 				</BlockControls>
 				<div className={ classes.join( ' ' ) }>
-					<InnerBlocks template={ template } templateLock="insert" />
-					<div className="rmb-recipe__meta-list">
-						<div className="rmb-recipe__meta-item">
-							<span>{ __( 'Serving Size:', 'rmb-recipe-block' ) }</span>
-							<RichText
-								tagname="span"
-								placeholder={ __( 'Write serving…', 'rmb-recipe-block' ) }
-								onChange={ ( value ) => setAttributes( { serving: value } ) }
-								value={ serving }
-							/>
-						</div>
-						<div className="rmb-recipe__meta-item">
-							<span>{ __( 'Time:', 'rmb-recipe-block' ) }</span>
-							<RichText
-								tagname="span"
-								placeholder={ __( 'Write time…', 'rmb-recipe-block' ) }
-								onChange={ ( value ) => setAttributes( { time: value } ) }
-								value={ time }
-							/>
-						</div>
-						<div className="rmb-recipe__meta-item">
-							<span>{ __( 'Difficulty:', 'rmb-recipe-block' ) }</span>
-							<RichText
-								tagname="span"
-								placeholder={ __( 'Write difficulty…', 'rmb-recipe-block' ) }
-								onChange={ ( value ) => setAttributes( { difficulty: value } ) }
-								value={ difficulty }
-							/>
-						</div>
-					</div>
-					<span>{ __( 'Ingredients', 'rmb-recipe-block' ) }</span>
-					<RichText
-						multiline="li"
-						tagName="ul"
-						onChange={ ( nextValues ) => setAttributes( { ingredients: nextValues } ) }
-						value={ ingredients }
-						placeholder={ __( 'Write list…' ) }
-					/>
-					<span>{ __( 'Directions', 'rmb-recipe-block' ) }</span>
-					<RichText
-						multiline="li"
-						tagName="ol"
-						onChange={ ( nextValues ) => setAttributes( { directions: nextValues } ) }
-						value={ directions }
-						placeholder={ __( 'Write list…' ) }
+					<InnerBlocks
+						template={ template }
+						templateLock={ false }
+						allowedBlocks={ allowedBlocks }
 					/>
 				</div>
 			</Fragment>
