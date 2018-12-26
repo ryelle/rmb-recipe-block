@@ -2,12 +2,12 @@
  * External Dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { Fragment } from '@wordpress/element';
 import {
 	BlockAlignmentToolbar,
 	BlockControls,
 	InnerBlocks,
 } from '@wordpress/editor';
+import { Fragment } from '@wordpress/element';
 import { registerBlockType } from '@wordpress/blocks';
 
 /**

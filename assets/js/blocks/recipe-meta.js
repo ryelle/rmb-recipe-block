@@ -7,7 +7,7 @@ import { registerBlockType } from '@wordpress/blocks';
 
 registerBlockType( 'ryelle/recipe-meta', {
 	title: __( 'Recipe Meta', 'rmb-recipe-block' ),
-	icon: 'create',
+	icon: 'info',
 	category: 'widgets',
 	parent: [ 'ryelle/recipe' ],
 	attributes: {
