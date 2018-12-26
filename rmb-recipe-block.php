@@ -22,7 +22,7 @@ function rmb_recipe_initialize() {
 	$files_exist = file_exists( plugin_dir_path( __FILE__ ) . '/build/recipe-block.js' );
 	if ( $files_exist && function_exists( 'register_block_type' ) ) {
 		add_action( 'init', 'rmb_recipe_register_block' );
-		add_action( 'enqueue_block_editor_assets', 'rmb_recipe_gutenberg_scripts' );
+		add_action( 'init', 'rmb_recipe_gutenberg_scripts' );
 	}
 }
 add_action( 'plugins_loaded', 'rmb_recipe_initialize' );
