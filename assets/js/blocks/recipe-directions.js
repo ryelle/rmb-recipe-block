@@ -25,13 +25,15 @@ registerBlockType( 'ryelle/recipe-directions', {
 
 		return (
 			<div className="rmb-recipe-block__directions">
-				<span>{ __( 'Directions', 'rmb-recipe-block' ) }</span>
+				<h3 className="rmb-recipe-block__directions-header">
+					{ __( 'Directions', 'rmb-recipe-block' ) }
+				</h3>
 				<RichText
 					multiline="li"
 					tagName="ol"
 					onChange={ ( nextValues ) => setAttributes( { directions: nextValues } ) }
 					value={ directions }
-					placeholder={ __( 'Write list…' ) }
+					placeholder={ __( 'Write your directions…', 'rmb-recipe-block' ) }
 				/>
 			</div>
 		);
@@ -42,6 +44,13 @@ registerBlockType( 'ryelle/recipe-directions', {
 			directions,
 		} = props.attributes; /* eslint-disable-line react/prop-types */
 
-		return <RichText.Content tagName="ol" value={ directions } multiline="li" />;
+		return (
+			<div className="rmb-recipe-block__directions">
+				<h3 className="rmb-recipe-block__directions-header">
+					{ __( 'Directions', 'rmb-recipe-block' ) }
+				</h3>
+				<RichText.Content tagName="ol" value={ directions } multiline="li" />
+			</div>
+		);
 	},
 } );

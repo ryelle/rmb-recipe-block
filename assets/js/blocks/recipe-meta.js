@@ -31,27 +31,33 @@ registerBlockType( 'ryelle/recipe-meta', {
 		return (
 			<div className="rmb-recipe__meta-list">
 				<div className="rmb-recipe__meta-item">
-					<span>{ __( 'Serving Size:', 'rmb-recipe-block' ) }</span>
+					<span className="rmb-recipe__meta-item-label">
+						{ __( 'Serving Size:', 'rmb-recipe-block' ) }
+					</span>
 					<RichText
-						tagname="span"
+						multiline={ false }
 						placeholder={ __( 'Write serving…', 'rmb-recipe-block' ) }
 						onChange={ ( value ) => setAttributes( { serving: value } ) }
 						value={ serving }
 					/>
 				</div>
 				<div className="rmb-recipe__meta-item">
-					<span>{ __( 'Time:', 'rmb-recipe-block' ) }</span>
+					<span className="rmb-recipe__meta-item-label">
+						{ __( 'Time:', 'rmb-recipe-block' ) }
+					</span>
 					<RichText
-						tagname="span"
+						multiline={ false }
 						placeholder={ __( 'Write time…', 'rmb-recipe-block' ) }
 						onChange={ ( value ) => setAttributes( { time: value } ) }
 						value={ time }
 					/>
 				</div>
 				<div className="rmb-recipe__meta-item">
-					<span>{ __( 'Difficulty:', 'rmb-recipe-block' ) }</span>
+					<span className="rmb-recipe__meta-item-label">
+						{ __( 'Difficulty:', 'rmb-recipe-block' ) }
+					</span>
 					<RichText
-						tagname="span"
+						multiline={ false }
 						placeholder={ __( 'Write difficulty…', 'rmb-recipe-block' ) }
 						onChange={ ( value ) => setAttributes( { difficulty: value } ) }
 						value={ difficulty }
@@ -70,16 +76,22 @@ registerBlockType( 'ryelle/recipe-meta', {
 		return (
 			<div className="rmb-recipe__meta-list">
 				<div className="rmb-recipe__meta-item">
-					<span>{ __( 'Serving Size:', 'rmb-recipe-block' ) }</span>
-					<span>{ serving }</span>
+					<span className="rmb-recipe__meta-item-label">
+						{ __( 'Serving Size:', 'rmb-recipe-block' ) }
+					</span>
+					<RichText.Content tagName="div" value={ serving } />
 				</div>
 				<div className="rmb-recipe__meta-item">
-					<span>{ __( 'Time:', 'rmb-recipe-block' ) }</span>
-					<span>{ time }</span>
+					<span className="rmb-recipe__meta-item-label">
+						{ __( 'Time:', 'rmb-recipe-block' ) }
+					</span>
+					<RichText.Content tagName="div" value={ time } />
 				</div>
 				<div className="rmb-recipe__meta-item">
-					<span>{ __( 'Difficulty:', 'rmb-recipe-block' ) }</span>
-					<span>{ difficulty }</span>
+					<span className="rmb-recipe__meta-item-label">
+						{ __( 'Difficulty:', 'rmb-recipe-block' ) }
+					</span>
+					<RichText.Content tagName="div" value={ difficulty } />
 				</div>
 			</div>
 		);

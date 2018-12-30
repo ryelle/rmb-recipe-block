@@ -25,13 +25,15 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 
 		return (
 			<div className="rmb-recipe-block__ingredients">
-				<span>{ __( 'Ingredients', 'rmb-recipe-block' ) }</span>
+				<h3 className="rmb-recipe-block__ingredients-header">
+					{ __( 'Ingredients', 'rmb-recipe-block' ) }
+				</h3>
 				<RichText
 					multiline="li"
 					tagName="ul"
 					onChange={ ( nextValues ) => setAttributes( { ingredients: nextValues } ) }
 					value={ ingredients }
-					placeholder={ __( 'Write list…' ) }
+					placeholder={ __( 'Add your ingredients…', 'rmb-recipe-block' ) }
 				/>
 			</div>
 		);
@@ -42,6 +44,13 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 			ingredients,
 		} = props.attributes; /* eslint-disable-line react/prop-types */
 
-		return <RichText.Content tagName="ul" value={ ingredients } multiline="li" />;
+		return (
+			<div className="rmb-recipe-block__ingredients">
+				<h3 className="rmb-recipe-block__ingredients-header">
+					{ __( 'Ingredients', 'rmb-recipe-block' ) }
+				</h3>
+				<RichText.Content tagName="ul" value={ ingredients } multiline="li" />
+			</div>
+		);
 	},
 } );
