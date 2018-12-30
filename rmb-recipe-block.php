@@ -23,6 +23,7 @@ function rmb_recipe_initialize() {
 	if ( $files_exist && function_exists( 'register_block_type' ) ) {
 		add_action( 'init', 'rmb_recipe_register_block' );
 		add_action( 'init', 'rmb_recipe_gutenberg_scripts' );
+		add_action( 'wp_enqueue_scripts', 'rmb_recipe_theme_style' );
 	}
 }
 add_action( 'plugins_loaded', 'rmb_recipe_initialize' );
@@ -33,7 +34,7 @@ add_action( 'plugins_loaded', 'rmb_recipe_initialize' );
 function rmb_recipe_register_block() {
 	register_block_type( 'ryelle/recipe', array(
 		'editor_script' => 'rmb-recipe-block-editor',
-		// 'editor_style'  => 'rmb-recipe-block-editor',
+		'editor_style'  => 'rmb-recipe-block-editor',
 	) );
 }
 
@@ -48,12 +49,19 @@ function rmb_recipe_gutenberg_scripts() {
 		rmb_recipe_get_file_version( '/build/recipe-block.js' )
 	);
 
-	// wp_register_style(
-	// 	'rmb-recipe-block-editor',
-	// 	plugins_url( 'build/recipe-block.css', __FILE__ ),
-	// 	array(),
-	// 	rmb_recipe_get_file_version( '/build/recipe-block.css' )
-	// );
+	wp_register_style(
+		'rmb-recipe-block-editor',
+		plugins_url( 'build/recipe-block.css', __FILE__ ),
+		array(),
+		rmb_recipe_get_file_version( '/build/recipe-block.css' )
+	);
+}
+
+/**
+ * Add the (structural) stylesheet to the front end of the site.
+ */
+function rmb_recipe_theme_style() {
+	wp_enqueue_style( 'rmb-recipe-block-editor' );
 }
 
 /**

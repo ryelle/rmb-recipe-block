@@ -13,7 +13,7 @@ import { registerBlockType } from '@wordpress/blocks';
 /**
  * Internal dependencies
  */
-import '../css/recipe-block.scss';
+import '../css/editor.scss';
 import './blocks/recipe-meta';
 import './blocks/recipe-ingredients';
 import './blocks/recipe-directions';
