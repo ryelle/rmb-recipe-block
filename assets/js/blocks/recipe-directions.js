@@ -2,8 +2,17 @@
  * External Dependencies
  */
 import { __ } from '@wordpress/i18n';
+import {
+	createBlock,
+	getBlockAttributes,
+	registerBlockType,
+} from '@wordpress/blocks';
 import { RichText } from '@wordpress/editor';
-import { registerBlockType } from '@wordpress/blocks';
+
+/**
+ * Internal Dependencies
+ */
+import listContentSchema from './list-schema';
 
 registerBlockType( 'ryelle/recipe-directions', {
 	title: __( 'Recipe Directions', 'rmb-recipe-block' ),
@@ -18,6 +27,23 @@ registerBlockType( 'ryelle/recipe-directions', {
 			multiline: 'li',
 			default: '',
 		},
+	},
+
+	transforms: {
+		from: [
+			{
+				type: 'raw',
+				selector: 'ol',
+				schema: {
+					ol: listContentSchema.ol,
+				},
+				transform( node ) {
+					return createBlock( 'ryelle/recipe-directions', {
+						...getBlockAttributes( 'ryelle/recipe-directions', node.outerHTML ),
+					} );
+				},
+			},
+		],
 	},
 
 	edit( { attributes, setAttributes } ) {
