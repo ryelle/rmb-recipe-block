@@ -66,7 +66,7 @@ registerBlockType( 'ryelle/recipe', {
 			<Fragment>
 				<BlockControls>
 					<BlockAlignmentToolbar
-						controls={ [ 'wide', 'full' ] }
+						controls={ [ 'wide' ] }
 						value={ align }
 						onChange={ ( nextAlign ) => setAttributes( { align: nextAlign } ) }
 					/>
