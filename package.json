@@ -37,5 +37,10 @@
   "engines": {
     "node": ">=8.9.3",
     "npm": ">=5.5.1"
-  }
+  },
+  "files": [
+    "build/*",
+    "bin/*",
+    "rmb-recipe-block.php"
+  ]
 }
