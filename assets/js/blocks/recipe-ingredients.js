@@ -4,15 +4,9 @@
 import { __ } from '@wordpress/i18n';
 import {
 	createBlock,
-	getBlockAttributes,
 	registerBlockType,
 } from '@wordpress/blocks';
 import { RichText } from '@wordpress/editor';
-
-/**
- * Internal Dependencies
- */
-import listContentSchema from './list-schema';
 
 registerBlockType( 'ryelle/recipe-ingredients', {
 	title: __( 'Recipe Ingredients', 'rmb-recipe-block' ),
@@ -30,18 +24,15 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 	},
 
 	transforms: {
-		from: [
+		to: [
 			{
-				type: 'raw',
-				selector: 'ul',
-				schema: {
-					ul: listContentSchema.ul,
-				},
-				transform( node ) {
-					return createBlock( 'ryelle/recipe-ingredients', {
-						...getBlockAttributes( 'ryelle/recipe-ingredients', node.outerHTML ),
-					} );
-				},
+				type: 'block',
+				blocks: [ 'core/list' ],
+				transform: ( { ingredients } ) =>
+					createBlock( 'core/list', {
+						values: ingredients,
+						ordered: false,
+					} ),
 			},
 		],
 	},
