@@ -15,6 +15,10 @@ defined( 'ABSPATH' ) || die();
 define( 'RMB_RECIPE_VERSION', '1.0.0' );
 define( 'RMB_RECIPE_DEV_MODE', true );
 
+if ( class_exists( 'WP_CLI' ) ) {
+	require_once( 'bin/cli-command.php' );
+}
+
 /**
  * Load up the assets if Gutenberg exists
  */
