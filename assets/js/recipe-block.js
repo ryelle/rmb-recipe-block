@@ -28,6 +28,7 @@ const BLOCKS_TEMPLATE = [
 ];
 
 const BLOCKS_ALLOWED = [
+	'core/button',
 	'core/cover',
 	'core/gallery',
 	'core/heading',
