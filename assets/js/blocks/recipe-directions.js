@@ -2,8 +2,14 @@
  * External Dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { BlockControls, InspectorControls, RichText } from '@wordpress/editor';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
-import { RichText } from '@wordpress/editor';
+import { PanelBody } from '@wordpress/components';
+
+/**
+ * Internal dependencies
+ */
+import HeadingToolbar from './heading-toolbar';
 
 registerBlockType( 'ryelle/recipe-directions', {
 	title: __( 'Recipe Directions', 'rmb-recipe-block' ),
@@ -18,10 +24,14 @@ registerBlockType( 'ryelle/recipe-directions', {
 			multiline: 'li',
 			default: '',
 		},
+		level: {
+			type: 'number',
+			default: 3,
+		},
 		title: {
 			type: 'string',
 			source: 'html',
-			selector: 'h2,h3,h4,h5,h6',
+			selector: '.rmb-recipe-block__directions-header',
 			default: '',
 		},
 	},
@@ -50,13 +60,32 @@ registerBlockType( 'ryelle/recipe-directions', {
 	},
 
 	edit( { attributes, setAttributes } ) {
-		const { directions } = attributes;
+		const { directions, level } = attributes;
 		const title = attributes.title || __( 'Directions', 'rmb-recipe-block' );
 
 		return (
 			<div className="rmb-recipe-block__directions">
+				<BlockControls>
+					<HeadingToolbar
+						minLevel={ 2 }
+						maxLevel={ 5 }
+						selectedLevel={ level }
+						onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) }
+					/>
+				</BlockControls>
+				<InspectorControls>
+					<PanelBody title={ __( 'Settings', 'rmb-recipe-block' ) }>
+						<p>{ __( 'Level', 'rmb-recipe-block' ) }</p>
+						<HeadingToolbar
+							minLevel={ 2 }
+							maxLevel={ 7 }
+							selectedLevel={ level }
+							onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) }
+						/>
+					</PanelBody>
+				</InspectorControls>
 				<RichText
-					tagName="h3"
+					tagName={ `h${ level }` }
 					className="rmb-recipe-block__directions-header"
 					onChange={ ( nextValues ) => setAttributes( { title: nextValues } ) }
 					value={ title }
@@ -73,13 +102,13 @@ registerBlockType( 'ryelle/recipe-directions', {
 	},
 
 	save( { attributes } ) {
-		const { directions } = attributes; /* eslint-disable-line react/prop-types */
+		const { directions, level } = attributes; /* eslint-disable-line react/prop-types */
 		const title = attributes.title || __( 'Directions', 'rmb-recipe-block' );
 
 		return (
 			<div className="rmb-recipe-block__directions">
 				<RichText.Content
-					tagName="h3"
+					tagName={ `h${ level }` }
 					className="rmb-recipe-block__directions-header"
 					value={ title }
 				/>

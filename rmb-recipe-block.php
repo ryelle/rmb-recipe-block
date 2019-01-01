@@ -49,7 +49,7 @@ function rmb_recipe_gutenberg_scripts() {
 	wp_register_script(
 		'rmb-recipe-block-editor',
 		plugins_url( 'build/recipe-block.js', __FILE__ ),
-		array( 'wp-i18n', 'wp-element', 'wp-editor', 'wp-blocks' ),
+		array( 'wp-i18n', 'wp-element', 'wp-editor', 'wp-blocks', 'lodash' ),
 		rmb_recipe_get_file_version( '/build/recipe-block.js' )
 	);
 
