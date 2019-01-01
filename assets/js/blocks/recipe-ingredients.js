@@ -2,10 +2,7 @@
  * External Dependencies
  */
 import { __ } from '@wordpress/i18n';
-import {
-	createBlock,
-	registerBlockType,
-} from '@wordpress/blocks';
+import { createBlock, registerBlockType } from '@wordpress/blocks';
 import { RichText } from '@wordpress/editor';
 
 registerBlockType( 'ryelle/recipe-ingredients', {
@@ -21,6 +18,12 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 			multiline: 'li',
 			default: '',
 		},
+		title: {
+			type: 'string',
+			source: 'html',
+			selector: 'h2,h3,h4,h5,h6',
+			default: '',
+		},
 	},
 
 	transforms: {
@@ -34,17 +37,30 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 						ordered: false,
 					} ),
 			},
+			{
+				type: 'block',
+				blocks: [ 'ryelle/recipe-directions' ],
+				transform: ( { ingredients, title } ) =>
+					createBlock( 'ryelle/recipe-directions', {
+						directions: ingredients,
+						title,
+					} ),
+			},
 		],
 	},
 
 	edit( { attributes, setAttributes } ) {
 		const { ingredients } = attributes;
+		const title = attributes.title || __( 'Ingredients', 'rmb-recipe-block' );
 
 		return (
 			<div className="rmb-recipe-block__ingredients">
-				<h3 className="rmb-recipe-block__ingredients-header">
-					{ __( 'Ingredients', 'rmb-recipe-block' ) }
-				</h3>
+				<RichText
+					tagName="h3"
+					className="rmb-recipe-block__ingredients-header"
+					onChange={ ( nextValues ) => setAttributes( { title: nextValues } ) }
+					value={ title }
+				/>
 				<RichText
 					multiline="li"
 					tagName="ul"
@@ -56,16 +72,17 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 		);
 	},
 
-	save( props ) {
-		const {
-			ingredients,
-		} = props.attributes; /* eslint-disable-line react/prop-types */
+	save( { attributes } ) {
+		const { ingredients } = attributes; /* eslint-disable-line react/prop-types */
+		const title = attributes.title || __( 'Ingredients', 'rmb-recipe-block' );
 
 		return (
 			<div className="rmb-recipe-block__ingredients">
-				<h3 className="rmb-recipe-block__ingredients-header">
-					{ __( 'Ingredients', 'rmb-recipe-block' ) }
-				</h3>
+				<RichText.Content
+					tagName="h3"
+					className="rmb-recipe-block__ingredients-header"
+					value={ title }
+				/>
 				<RichText.Content tagName="ul" value={ ingredients } multiline="li" />
 			</div>
 		);
