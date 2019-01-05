@@ -32,7 +32,7 @@ registerBlockType( 'ryelle/recipe-directions', {
 			type: 'string',
 			source: 'html',
 			selector: '.rmb-recipe-block__directions-header',
-			default: '',
+			default: __( 'Directions', 'rmb-recipe-block' ),
 		},
 	},
 
@@ -60,8 +60,7 @@ registerBlockType( 'ryelle/recipe-directions', {
 	},
 
 	edit( { attributes, setAttributes } ) {
-		const { directions, level } = attributes;
-		const title = attributes.title || __( 'Directions', 'rmb-recipe-block' );
+		const { directions, level, title } = attributes;
 
 		return (
 			<div className="rmb-recipe-block__directions">
@@ -89,6 +88,7 @@ registerBlockType( 'ryelle/recipe-directions', {
 					className="rmb-recipe-block__directions-header"
 					onChange={ ( nextValues ) => setAttributes( { title: nextValues } ) }
 					value={ title }
+					placeholder={ __( 'Directions…', 'rmb-recipe-block' ) }
 				/>
 				<RichText
 					multiline="li"
@@ -105,8 +105,8 @@ registerBlockType( 'ryelle/recipe-directions', {
 		const {
 			directions,
 			level,
+			title,
 		} = attributes; /* eslint-disable-line react/prop-types */
-		const title = attributes.title || __( 'Directions', 'rmb-recipe-block' );
 
 		return (
 			<div className="rmb-recipe-block__directions">
