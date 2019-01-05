@@ -17,4 +17,5 @@ install:
   - composer install
 
 script:
+  - npm run build
   - npm run ci
