@@ -8,6 +8,8 @@
  * Author URI: https://ryelle.codes
  * Text Domain: rmb-recipe-block
  * Domain Path: /languages
+ *
+ * @package rmb-recipe-block
  */
 
 defined( 'ABSPATH' ) || die();
@@ -32,10 +34,13 @@ add_action( 'plugins_loaded', 'rmb_recipe_initialize' );
  * Register the recipe block and its scripts.
  */
 function rmb_recipe_register_block() {
-	register_block_type( 'ryelle/recipe', array(
-		'editor_script' => 'rmb-recipe-block-editor',
-		'editor_style'  => 'rmb-recipe-block-editor',
-	) );
+	register_block_type(
+		'ryelle/recipe',
+		array(
+			'editor_script' => 'rmb-recipe-block-editor',
+			'editor_style'  => 'rmb-recipe-block-editor',
+		)
+	);
 }
 
 /**
