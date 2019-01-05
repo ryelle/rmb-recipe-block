@@ -51,7 +51,7 @@ const BlockSVG = (
 );
 
 registerBlockType( 'ryelle/recipe', {
-	title: __( 'Recipe Block', 'rmb-recipe-block' ),
+	title: __( 'Recipe', 'rmb-recipe-block' ),
 	icon: <Icon icon={ BlockSVG } />,
 	category: 'widgets',
 	description: __( 'Show people how to cook!', 'rmb-recipe-block' ),
