@@ -40,7 +40,6 @@
   },
   "files": [
     "build/*",
-    "bin/*",
     "rmb-recipe-block.php"
   ]
 }
