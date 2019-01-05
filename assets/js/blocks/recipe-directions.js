@@ -102,7 +102,10 @@ registerBlockType( 'ryelle/recipe-directions', {
 	},
 
 	save( { attributes } ) {
-		const { directions, level } = attributes; /* eslint-disable-line react/prop-types */
+		const {
+			directions,
+			level,
+		} = attributes; /* eslint-disable-line react/prop-types */
 		const title = attributes.title || __( 'Directions', 'rmb-recipe-block' );
 
 		return (
