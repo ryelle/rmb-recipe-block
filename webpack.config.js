@@ -45,12 +45,7 @@ const GutenbergBlocksConfig = {
 					'style-loader',
 					MiniCssExtractPlugin.loader,
 					'css-loader',
-					{
-						loader: 'postcss-loader',
-						options: {
-							plugins: [ require( 'autoprefixer' )( { browsers: [ '>1%' ] } ) ],
-						},
-					},
+					'postcss-loader',
 					'sass-loader',
 				],
 			},
