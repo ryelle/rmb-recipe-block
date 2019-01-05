@@ -32,7 +32,7 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 			type: 'string',
 			source: 'html',
 			selector: '.rmb-recipe-block__ingredients-header',
-			default: '',
+			default: __( 'Ingredients', 'rmb-recipe-block' ),
 		},
 	},
 
@@ -60,8 +60,7 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 	},
 
 	edit( { attributes, setAttributes } ) {
-		const { ingredients, level } = attributes;
-		const title = attributes.title || __( 'Ingredients', 'rmb-recipe-block' );
+		const { ingredients, level, title } = attributes;
 		const tagName = 'h' + level;
 
 		return (
@@ -90,6 +89,7 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 					className="rmb-recipe-block__ingredients-header"
 					onChange={ ( nextValues ) => setAttributes( { title: nextValues } ) }
 					value={ title }
+					placeholder={ __( 'Ingredients…', 'rmb-recipe-block' ) }
 				/>
 				<RichText
 					multiline="li"
@@ -106,8 +106,8 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 		const {
 			ingredients,
 			level,
+			title,
 		} = attributes; /* eslint-disable-line react/prop-types */
-		const title = attributes.title || __( 'Ingredients', 'rmb-recipe-block' );
 
 		return (
 			<div className="rmb-recipe-block__ingredients">
