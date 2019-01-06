@@ -15,7 +15,11 @@
 defined( 'ABSPATH' ) || die();
 
 define( 'RMB_RECIPE_VERSION', '1.0.0' );
-define( 'RMB_RECIPE_DEV_MODE', true );
+// Our dev mode depends on SCRIPT_DEBUG, but you can also override this
+// by setting `RMB_RECIPE_DEV_MODE` in wp-config.php.
+if ( ! defined( 'RMB_RECIPE_DEV_MODE' ) ) {
+	define( 'RMB_RECIPE_DEV_MODE', defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG );
+}
 
 /**
  * Load up the assets if Gutenberg exists
@@ -75,7 +79,7 @@ function rmb_recipe_theme_style() {
  * @param string $file Local path to the file.
  */
 function rmb_recipe_get_file_version( $file ) {
-	if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
+	if ( RMB_RECIPE_DEV_MODE ) {
 		return filemtime( plugin_dir_path( __FILE__ ) . $file );
 	}
 	return RMB_RECIPE_VERSION;
