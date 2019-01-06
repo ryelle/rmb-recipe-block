@@ -49,6 +49,7 @@
   },
   "files": [
     "build/*",
+    "README.md",
     "rmb-recipe-block.php"
   ]
 }
