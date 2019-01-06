@@ -28,8 +28,7 @@ function rmb_recipe_initialize() {
 	$files_exist = file_exists( plugin_dir_path( __FILE__ ) . '/build/recipe-block.js' );
 	if ( $files_exist && function_exists( 'register_block_type' ) ) {
 		add_action( 'init', 'rmb_recipe_register_block' );
-		add_action( 'init', 'rmb_recipe_gutenberg_scripts' );
-		add_action( 'wp_enqueue_scripts', 'rmb_recipe_theme_style' );
+		add_action( 'init', 'rmb_recipe_register_scripts' );
 	}
 }
 add_action( 'plugins_loaded', 'rmb_recipe_initialize' );
@@ -42,7 +41,7 @@ function rmb_recipe_register_block() {
 		'ryelle/recipe',
 		array(
 			'editor_script' => 'rmb-recipe-block-editor',
-			'editor_style'  => 'rmb-recipe-block-editor',
+			'style'         => 'rmb-recipe-block',
 		)
 	);
 }
@@ -50,7 +49,7 @@ function rmb_recipe_register_block() {
 /**
  * Register extra scripts needed.
  */
-function rmb_recipe_gutenberg_scripts() {
+function rmb_recipe_register_scripts() {
 	wp_register_script(
 		'rmb-recipe-block-editor',
 		plugins_url( 'build/recipe-block.js', __FILE__ ),
@@ -59,7 +58,7 @@ function rmb_recipe_gutenberg_scripts() {
 	);
 
 	wp_register_style(
-		'rmb-recipe-block-editor',
+		'rmb-recipe-block',
 		plugins_url( 'build/recipe-block.css', __FILE__ ),
 		array(),
 		rmb_recipe_get_file_version( '/build/recipe-block.css' )
@@ -67,16 +66,10 @@ function rmb_recipe_gutenberg_scripts() {
 }
 
 /**
- * Add the (structural) stylesheet to the front end of the site.
- */
-function rmb_recipe_theme_style() {
-	wp_enqueue_style( 'rmb-recipe-block-editor' );
-}
-
-/**
- * Get the file modified time if we're using SCRIPT_DEBUG.
+ * Get the file modified time as a cache buster if we're in dev mode.
  *
  * @param string $file Local path to the file.
+ * @return string The cache buster value to use for the given file.
  */
 function rmb_recipe_get_file_version( $file ) {
 	if ( RMB_RECIPE_DEV_MODE ) {
