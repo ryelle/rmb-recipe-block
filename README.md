@@ -28,11 +28,15 @@ Now you can activate the plugin 🎉
 
 You now have "Recipe" block in the block inserter.
 
-<img src="https://ryelle.codes/wp-content/uploads/2019/01/recipe-in-widgets-1.png" alt="Screenshot of Recipe icon in Widgets section" width="383px" />
+<img src="https://ryelle.codes/wp-content/uploads/2019/01/recipe-in-widgets-1.png" alt="Screenshot block inserter: new Recipe icon in Widgets section" width="383px" />
 
 Adding this will insert a template with an image, heading, recipe information (serving size, time, duration), and a section for ingredients and directions. You can add and remove blocks from this container.
 
 When in the recipe block, you'll be able to add extra Recipe Ingredients, Recipe Directions, and Recipe Meta blocks.
+
+<img src="https://ryelle.codes/wp-content/uploads/2019/01/sub-blocks.png" alt="Screenshot of block inserter: new recipe section blocks in Recipe section" width="383px" />
+
+_Note:_ This block doesn't add schema or structured content to your site (the magic used by google to format recipes in search results and for voice assistants). That's probably not in scope for me as this is a side-project and fulfills my use case, but PRs are welcome 😁
 
 -------------
 
@@ -41,4 +45,6 @@ When in the recipe block, you'll be able to add extra Recipe Ingredients, Recipe
 There are other npm scripts that will come in handy:
 
 - `npm run start` – Run the build process, and keep watching for any file changes.
-- `npm run lint` – Run the JS linter to make sure all code is following code standards.
+- `npm run lint` – Run the JS linter to make sure all code is following code standards. This will also be run on each PR automatically, so it might save a step to run it yourself before making a PR.
+
+Set `SCRIPT_DEBUG` to true, or add `define( 'RMB_RECIPE_DEV_MODE', true );` in wp-config.php to turn on "dev mode". This will trigger a cache-buster on the JS and CSS files, so that you're loading the most current files (only necessary if you're developing on the block).
