@@ -1,5 +1,5 @@
 {
-	"name": "wordpress/gutenberg",
+	"name": "ryelle/rmb-recipe-block",
 	"type": "wordpress-plugin",
 	"license": "GPL-2.0-or-later",
 	"description": "Blocks for displaying recipes on your site.",

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Recipe Block
  * Plugin URI: https://github.com/ryelle/rmb-recipe-block
- * Description: Recipe block for gutenberg.
+ * Description: A block for displaying recipe content on your site.
  * Version: 1.0.0
  * Author: Kelly Dwan & Mel Choyce
  * Author URI: https://ryelle.codes

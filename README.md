@@ -1,6 +1,6 @@
 # Recipe Block
 
-Gutenberg block for displaying recipes on your site 🥐 🍲 🥘 🍪
+A block for displaying recipes on your WordPress site 🥐 🍲 🥘 🍪
 
 ![Screenshot of the recipe block](https://ryelle.codes/wp-content/uploads/2019/01/Screen-Shot-2019-01-05-at-13.17.23.png)
 
