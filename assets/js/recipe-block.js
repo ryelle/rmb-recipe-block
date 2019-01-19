@@ -2,12 +2,7 @@
  * External Dependencies
  */
 import { __ } from '@wordpress/i18n';
-import {
-	BlockAlignmentToolbar,
-	BlockControls,
-	InnerBlocks,
-} from '@wordpress/editor';
-import { Fragment } from '@wordpress/element';
+import { InnerBlocks } from '@wordpress/editor';
 import { Icon } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
 
@@ -55,40 +50,21 @@ registerBlockType( 'ryelle/recipe', {
 	icon: <Icon icon={ BlockSVG } />,
 	category: 'widgets',
 	description: __( 'Show people how to cook!', 'rmb-recipe-block' ),
-	attributes: {
-		align: {
-			type: 'string',
-		},
+	supports: {
+		align: [ 'wide', 'full' ],
 	},
 
-	getEditWrapperProps( attributes ) {
-		const { align } = attributes;
-		if ( -1 !== [ 'wide', 'full' ].indexOf( align ) ) {
-			return { 'data-align': align };
-		}
-	},
-
-	edit( { attributes, setAttributes, className } ) {
-		const { align } = attributes;
+	edit( { className } ) {
 		const classes = [ className, 'rmb-recipe-block' ];
 
 		return (
-			<Fragment>
-				<BlockControls>
-					<BlockAlignmentToolbar
-						controls={ [ 'wide' ] }
-						value={ align }
-						onChange={ ( nextAlign ) => setAttributes( { align: nextAlign } ) }
-					/>
-				</BlockControls>
-				<div className={ classes.join( ' ' ) }>
-					<InnerBlocks
-						template={ BLOCKS_TEMPLATE }
-						templateLock={ false }
-						allowedBlocks={ BLOCKS_ALLOWED }
-					/>
-				</div>
-			</Fragment>
+			<div className={ classes.join( ' ' ) }>
+				<InnerBlocks
+					template={ BLOCKS_TEMPLATE }
+					templateLock={ false }
+					allowedBlocks={ BLOCKS_ALLOWED }
+				/>
+			</div>
 		);
 	},
 
