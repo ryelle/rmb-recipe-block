@@ -7,7 +7,7 @@ import { InnerBlocks, RichText } from '@wordpress/editor';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
 
 registerBlockType( 'ryelle/recipe-ingredients', {
-	title: __( 'Recipe Ingredients', 'rmb-recipe-block' ),
+	title: __( 'Ingredients', 'rmb-recipe-block' ),
 	icon: 'editor-ul',
 	category: 'widgets',
 	parent: [ 'ryelle/recipe' ],

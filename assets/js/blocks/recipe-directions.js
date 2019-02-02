@@ -7,7 +7,7 @@ import { InnerBlocks, RichText } from '@wordpress/editor';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
 
 registerBlockType( 'ryelle/recipe-directions', {
-	title: __( 'Recipe Directions', 'rmb-recipe-block' ),
+	title: __( 'Directions', 'rmb-recipe-block' ),
 	icon: 'editor-ol',
 	category: 'widgets',
 	parent: [ 'ryelle/recipe' ],

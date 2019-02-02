@@ -8,7 +8,7 @@ import { PanelBody, ToggleControl } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
 
 registerBlockType( 'ryelle/recipe-meta', {
-	title: __( 'Recipe Meta', 'rmb-recipe-block' ),
+	title: __( 'Information', 'rmb-recipe-block' ),
 	icon: 'info',
 	category: 'widgets',
 	parent: [ 'ryelle/recipe' ],
