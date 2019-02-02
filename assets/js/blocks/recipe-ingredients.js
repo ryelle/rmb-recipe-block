@@ -19,6 +19,10 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 			multiline: 'li',
 			default: '',
 		},
+		level: {
+			type: 'number',
+			default: 3,
+		},
 	},
 
 	transforms: {
