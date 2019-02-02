@@ -2,14 +2,9 @@
  * External Dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { BlockControls, InspectorControls, RichText } from '@wordpress/editor';
+import { find } from 'lodash';
+import { InnerBlocks, RichText } from '@wordpress/editor';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
-import { PanelBody } from '@wordpress/components';
-
-/**
- * Internal dependencies
- */
-import HeadingToolbar from './heading-toolbar';
 
 registerBlockType( 'ryelle/recipe-directions', {
 	title: __( 'Recipe Directions', 'rmb-recipe-block' ),
@@ -23,16 +18,6 @@ registerBlockType( 'ryelle/recipe-directions', {
 			selector: 'ol',
 			multiline: 'li',
 			default: '',
-		},
-		level: {
-			type: 'number',
-			default: 3,
-		},
-		title: {
-			type: 'string',
-			source: 'html',
-			selector: '.rmb-recipe-block__directions-header',
-			default: __( 'Directions', 'rmb-recipe-block' ),
 		},
 	},
 
@@ -50,52 +35,41 @@ registerBlockType( 'ryelle/recipe-directions', {
 			{
 				type: 'block',
 				blocks: [ 'ryelle/recipe-ingredients' ],
-				transform: ( { directions, title } ) =>
-					createBlock( 'ryelle/recipe-ingredients', {
-						ingredients: directions,
-						title,
-					} ),
+				transform: ( { directions }, innerBlocks ) => {
+					const heading = find( innerBlocks, { name: 'core/heading' }, {} );
+
+					return createBlock(
+						'ryelle/recipe-ingredients',
+						{ ingredients: directions },
+						[ heading ]
+					);
+				},
 			},
 		],
 	},
 
 	edit( { attributes, setAttributes } ) {
-		const { directions, level, title } = attributes;
-
+		const { directions } = attributes;
 		return (
 			<div className="rmb-recipe-block__directions">
-				<BlockControls>
-					<HeadingToolbar
-						minLevel={ 2 }
-						maxLevel={ 5 }
-						selectedLevel={ level }
-						onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) }
-					/>
-				</BlockControls>
-				<InspectorControls>
-					<PanelBody title={ __( 'Settings', 'rmb-recipe-block' ) }>
-						<p>{ __( 'Level', 'rmb-recipe-block' ) }</p>
-						<HeadingToolbar
-							minLevel={ 2 }
-							maxLevel={ 7 }
-							selectedLevel={ level }
-							onChange={ ( newLevel ) => setAttributes( { level: newLevel } ) }
-						/>
-					</PanelBody>
-				</InspectorControls>
-				<RichText
-					tagName={ `h${ level }` }
-					className="rmb-recipe-block__directions-header"
-					onChange={ ( nextValues ) => setAttributes( { title: nextValues } ) }
-					value={ title }
-					placeholder={ __( 'Directions…', 'rmb-recipe-block' ) }
+				<InnerBlocks
+					template={ [
+						[
+							'core/heading',
+							{
+								content: __( 'Directions', 'rmb-recipe-block' ),
+								level: 3,
+							},
+						],
+					] }
+					templateLock={ true }
 				/>
 				<RichText
 					multiline="li"
 					tagName="ol"
 					onChange={ ( nextValues ) => setAttributes( { directions: nextValues } ) }
 					value={ directions }
-					placeholder={ __( 'Write your directions…', 'rmb-recipe-block' ) }
+					placeholder={ __( 'Add your directions…', 'rmb-recipe-block' ) }
 				/>
 			</div>
 		);
@@ -104,19 +78,67 @@ registerBlockType( 'ryelle/recipe-directions', {
 	save( { attributes } ) {
 		const {
 			directions,
-			level,
-			title,
 		} = attributes; /* eslint-disable-line react/prop-types */
-
 		return (
 			<div className="rmb-recipe-block__directions">
-				<RichText.Content
-					tagName={ `h${ level }` }
-					className="rmb-recipe-block__directions-header"
-					value={ title }
-				/>
+				<InnerBlocks.Content />
 				<RichText.Content tagName="ol" value={ directions } multiline="li" />
 			</div>
 		);
 	},
+
+	deprecated: [
+		{
+			attributes: {
+				directions: {
+					type: 'string',
+					source: 'html',
+					selector: 'ol',
+					multiline: 'li',
+					default: '',
+				},
+				level: {
+					type: 'number',
+					default: 3,
+				},
+				title: {
+					type: 'string',
+					source: 'html',
+					selector: '.rmb-recipe-block__directions-header',
+					default: __( 'Directions', 'rmb-recipe-block' ),
+				},
+			},
+
+			save( { attributes } ) {
+				const {
+					directions,
+					level,
+					title,
+				} = attributes; /* eslint-disable-line react/prop-types */
+
+				return (
+					<div className="rmb-recipe-block__directions">
+						<RichText.Content
+							tagName={ `h${ level }` }
+							className="rmb-recipe-block__directions-header"
+							value={ title }
+						/>
+						<RichText.Content tagName="ol" value={ directions } multiline="li" />
+					</div>
+				);
+			},
+
+			migrate( attributes ) {
+				return [
+					{ directions: attributes.directions },
+					[
+						createBlock( 'core/heading', {
+							content: attributes.title,
+							level: attributes.level,
+						} ),
+					],
+				];
+			},
+		},
+	],
 } );
