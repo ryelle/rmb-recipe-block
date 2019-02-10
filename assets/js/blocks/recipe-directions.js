@@ -66,7 +66,7 @@ registerBlockType( 'ryelle/recipe-directions', {
 							},
 						],
 					] }
-					templateLock={ true }
+					templateLock="all"
 				/>
 				<RichText
 					multiline="li"

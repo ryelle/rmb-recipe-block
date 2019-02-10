@@ -67,7 +67,7 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 							},
 						],
 					] }
-					templateLock={ true }
+					templateLock="all"
 				/>
 				<RichText
 					multiline="li"
