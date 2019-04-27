@@ -34,7 +34,7 @@
     "cssnano": "4.1.10",
     "eslint": "5.15.0",
     "mini-css-extract-plugin": "0.5.0",
-    "node-sass": "4.11.0",
+    "node-sass": "4.12.0",
     "postcss-loader": "3.0.0",
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
