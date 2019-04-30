@@ -41,7 +41,7 @@
     "stylelint": "10.0.1",
     "stylelint-config-wordpress": "13.1.0",
     "webpack": "4.30.0",
-    "webpack-cli": "3.2.3"
+    "webpack-cli": "3.3.1"
   },
   "engines": {
     "node": "10.15.2",
