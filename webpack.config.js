@@ -4,7 +4,7 @@
  */
 const path = require( 'path' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
-const CleanWebpackPlugin = require( 'clean-webpack-plugin' );
+const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const externals = {
@@ -52,7 +52,7 @@ const GutenbergBlocksConfig = {
 		],
 	},
 	plugins: [
-		new CleanWebpackPlugin( 'build', {} ),
+		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin( {
 			filename: '[name].css',
 		} ),
