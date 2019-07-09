@@ -22,7 +22,6 @@
   },
   "devDependencies": {
     "@babel/core": "7.5.4",
-    "@wordpress/babel-plugin-import-jsx-pragma": "2.2.0",
     "@wordpress/babel-preset-default": "4.3.0",
     "@wordpress/eslint-plugin": "2.3.0",
     "autoprefixer": "9.6.1",
