@@ -3,7 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { find } from 'lodash';
-import { InnerBlocks, RichText } from '@wordpress/editor';
+import { InnerBlocks, RichText } from '@wordpress/block-editor';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
 
 registerBlockType( 'ryelle/recipe-directions', {

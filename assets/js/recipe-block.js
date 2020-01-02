@@ -2,7 +2,7 @@
  * External Dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { InnerBlocks } from '@wordpress/editor';
+import { InnerBlocks } from '@wordpress/block-editor';
 import { Icon } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
 

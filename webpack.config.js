@@ -12,7 +12,7 @@ const externals = {
 	'@wordpress/blocks': { this: [ 'wp', 'blocks' ] },
 	'@wordpress/components': { this: [ 'wp', 'components' ] },
 	'@wordpress/compose': { this: [ 'wp', 'compose' ] },
-	'@wordpress/editor': { this: [ 'wp', 'editor' ] },
+	'@wordpress/block-editor': { this: [ 'wp', 'blockEditor' ] },
 	'@wordpress/element': { this: [ 'wp', 'element' ] },
 	'@wordpress/i18n': { this: [ 'wp', 'i18n' ] },
 	lodash: 'lodash',
