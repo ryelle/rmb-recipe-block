@@ -1,55 +1,72 @@
 {
   "name": "rmb-recipe-block",
   "title": "Recipe Block",
-  "version": "1.0.0",
+  "version": "1.1.0",
+  "author": "Kelly Dwan & Mel Choyce",
+  "license": "GPL-2.0-or-later",
   "homepage": "https://ryelle.codes/",
   "repository": {
     "type": "git",
     "url": "https://github.com:ryelle/rmb-recipe-block.git"
   },
-  "license": "GPL-2.0+",
-  "main": "build/recipe-block.js",
-  "scripts": {
-    "build": "cross-env BABEL_ENV=default NODE_ENV=production webpack",
-    "start": "cross-env BABEL_ENV=default webpack --watch",
-    "ci": "npm run lint",
-    "lint": "concurrently \"npm run lint-js\" \"npm run lint-css\" \"npm run lint-php\"",
-    "lint-js": "eslint . --ext=js,jsx",
-    "lint-js:fix": "eslint . --ext=js,jsx --fix",
-    "lint-css": "stylelint '**/*.scss'",
-    "lint-css:fix": "stylelint '**/*.scss' --fix",
-    "lint-php": "composer run lint"
-  },
-  "devDependencies": {
-    "@babel/core": "7.8.4",
-    "@wordpress/babel-plugin-import-jsx-pragma": "1.1.3",
-    "@wordpress/babel-preset-default": "3.0.2",
-    "@wordpress/eslint-plugin": "1.0.1",
-    "autoprefixer": "9.7.4",
-    "babel-loader": "8.0.6",
-    "clean-webpack-plugin": "3.0.0",
-    "concurrently": "5.1.0",
-    "cross-env": "7.0.0",
-    "css-loader": "3.4.2",
-    "cssnano": "4.1.10",
-    "eslint": "6.8.0",
-    "mini-css-extract-plugin": "0.9.0",
-    "node-sass": "4.13.1",
-    "postcss-loader": "3.0.0",
-    "sass-loader": "8.0.2",
-    "style-loader": "1.1.3",
-    "stylelint": "13.1.0",
-    "stylelint-config-wordpress": "16.0.0",
-    "webpack": "4.41.5",
-    "webpack-cli": "3.3.10"
-  },
   "engines": {
-    "node": "10.16.3",
+    "node": "12.14.1",
     "npm": "6.13.7"
   },
   "files": [
     "build/*",
     "README.md",
     "rmb-recipe-block.php"
-  ]
+  ],
+  "main": "build/recipe-block.js",
+  "devDependencies": {
+    "@wordpress/browserslist-config": "2.6.0",
+    "@wordpress/eslint-plugin": "3.4.1",
+    "@wordpress/npm-package-json-lint-config": "2.2.0",
+    "@wordpress/scripts": "7.0.1",
+    "autoprefixer": "9.7.4",
+    "clean-webpack-plugin": "3.0.0",
+    "concurrently": "5.1.0",
+    "css-loader": "3.4.2",
+    "mini-css-extract-plugin": "0.9.0",
+    "node-sass": "4.13.1",
+    "postcss-loader": "3.0.0",
+    "sass-loader": "8.0.2",
+    "stylelint": "13.1.0",
+    "webpack": "4.41.5",
+    "webpack-cli": "3.3.10"
+  },
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "format:js": "wp-scripts format-js",
+    "lint:css": "wp-scripts lint-style assets/css/*",
+    "lint:css:fix": "wp-scripts lint-style assets/css/* --fix",
+    "lint:js": "wp-scripts lint-js assets/js/*",
+    "lint:js:fix": "wp-scripts lint-js assets/js/* --fix",
+    "lint:php": "composer run lint",
+    "lint:php:fix": "composer run format",
+    "lint:pkg-json": "wp-scripts lint-pkg-json",
+    "lint": "concurrently \"npm run lint:js\" \"npm run lint:css\" \"npm run lint:php\"",
+    "ci": "npm run lint"
+  },
+  "browserslist": [
+    "extends @wordpress/browserslist-config"
+  ],
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "eslintIgnore": [
+    "*.min.js"
+  ],
+  "npmpackagejsonlint": {
+    "extends": "@wordpress/npm-package-json-lint-config",
+    "rules": {
+      "require-bugs": "off",
+      "require-description": "off",
+      "require-keywords": "off"
+    }
+  }
 }

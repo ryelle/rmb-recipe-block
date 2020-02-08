@@ -3,7 +3,7 @@
  * Plugin Name: Recipe Block
  * Plugin URI: https://github.com/ryelle/rmb-recipe-block
  * Description: A block for displaying recipe content on your site.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Kelly Dwan & Mel Choyce
  * Author URI: https://ryelle.codes
  * Text Domain: rmb-recipe-block
@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || die();
 
-define( 'RMB_RECIPE_VERSION', '1.0.0' );
+define( 'RMB_RECIPE_VERSION', '1.1.0' );
 // Our dev mode depends on SCRIPT_DEBUG, but you can also override this
 // by setting `RMB_RECIPE_DEV_MODE` in wp-config.php.
 if ( ! defined( 'RMB_RECIPE_DEV_MODE' ) ) {
@@ -50,11 +50,20 @@ function rmb_recipe_register_block() {
  * Register extra scripts needed.
  */
 function rmb_recipe_register_scripts() {
+	$path        = plugin_dir_path( __FILE__ ) . '/build/recipe-block.js';
+	$deps_path   = plugin_dir_path( __FILE__ ) . '/build/recipe-block.asset.php';
+	$script_info = file_exists( $deps_path )
+		? require $deps_path
+		: array(
+			'dependencies' => array(),
+			'version'      => filemtime( $path ),
+		);
+
 	wp_register_script(
 		'rmb-recipe-block-editor',
 		plugins_url( 'build/recipe-block.js', __FILE__ ),
-		array( 'wp-i18n', 'wp-element', 'wp-editor', 'wp-blocks', 'lodash' ),
-		rmb_recipe_get_file_version( '/build/recipe-block.js' )
+		$script_info['dependencies'],
+		$script_info['version']
 	);
 
 	wp_register_style(

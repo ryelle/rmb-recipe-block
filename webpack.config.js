@@ -1,48 +1,25 @@
-/** @format */
 /**
  * External dependencies
  */
-const path = require( 'path' );
+const defaultConfig = require( '@wordpress/scripts/config/webpack.config' );
 const MiniCssExtractPlugin = require( 'mini-css-extract-plugin' );
 const { CleanWebpackPlugin } = require( 'clean-webpack-plugin' );
-const NODE_ENV = process.env.NODE_ENV || 'development';
-
-const externals = {
-	'@wordpress/api-fetch': { this: [ 'wp', 'apiFetch' ] },
-	'@wordpress/blocks': { this: [ 'wp', 'blocks' ] },
-	'@wordpress/components': { this: [ 'wp', 'components' ] },
-	'@wordpress/compose': { this: [ 'wp', 'compose' ] },
-	'@wordpress/block-editor': { this: [ 'wp', 'blockEditor' ] },
-	'@wordpress/element': { this: [ 'wp', 'element' ] },
-	'@wordpress/i18n': { this: [ 'wp', 'i18n' ] },
-	lodash: 'lodash',
-};
 
 /**
  * Config for compiling Gutenberg blocks JS.
  */
-const GutenbergBlocksConfig = {
-	mode: NODE_ENV,
+module.exports = {
+	...defaultConfig,
 	entry: {
 		'recipe-block': './assets/js/recipe-block.js',
 	},
-	output: {
-		path: path.resolve( __dirname, './build/' ),
-		filename: '[name].js',
-		libraryTarget: 'this',
-	},
-	externals,
 	module: {
+		...defaultConfig.module,
 		rules: [
-			{
-				test: /\.jsx?$/,
-				exclude: /node_modules/,
-				loader: 'babel-loader',
-			},
+			...defaultConfig.module.rules,
 			{
 				test: /\.s[c|a]ss$/,
 				use: [
-					'style-loader',
 					MiniCssExtractPlugin.loader,
 					'css-loader',
 					'postcss-loader',
@@ -52,11 +29,10 @@ const GutenbergBlocksConfig = {
 		],
 	},
 	plugins: [
+		...defaultConfig.plugins,
 		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin( {
 			filename: '[name].css',
 		} ),
 	],
 };
-
-module.exports = [ GutenbergBlocksConfig ];
