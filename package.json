@@ -23,7 +23,7 @@
     "@wordpress/browserslist-config": "2.6.0",
     "@wordpress/eslint-plugin": "3.4.1",
     "@wordpress/npm-package-json-lint-config": "2.2.0",
-    "@wordpress/scripts": "7.0.1",
+    "@wordpress/scripts": "7.2.0",
     "autoprefixer": "9.7.6",
     "clean-webpack-plugin": "3.0.0",
     "concurrently": "5.1.0",
