@@ -21,9 +21,9 @@
   "main": "build/recipe-block.js",
   "devDependencies": {
     "@wordpress/browserslist-config": "2.6.0",
-    "@wordpress/eslint-plugin": "6.0.0",
+    "@wordpress/eslint-plugin": "6.1.0",
     "@wordpress/npm-package-json-lint-config": "3.0.0",
-    "@wordpress/scripts": "9.1.0",
+    "@wordpress/scripts": "10.0.0",
     "autoprefixer": "9.8.0",
     "clean-webpack-plugin": "3.0.0",
     "concurrently": "5.2.0",
