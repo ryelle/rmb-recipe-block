@@ -40,7 +40,11 @@ registerBlockType( 'ryelle/recipe-directions', {
 				type: 'block',
 				blocks: [ 'ryelle/recipe-ingredients' ],
 				transform: ( { directions }, innerBlocks ) => {
-					const heading = find( innerBlocks, { name: 'core/heading' }, {} );
+					const heading = find(
+						innerBlocks,
+						{ name: 'core/heading' },
+						{}
+					);
 
 					return createBlock(
 						'ryelle/recipe-ingredients',
@@ -71,9 +75,14 @@ registerBlockType( 'ryelle/recipe-directions', {
 				<RichText
 					multiline="li"
 					tagName="ol"
-					onChange={ ( nextValues ) => setAttributes( { directions: nextValues } ) }
+					onChange={ ( nextValues ) =>
+						setAttributes( { directions: nextValues } )
+					}
 					value={ directions }
-					placeholder={ __( 'Add your directions…', 'rmb-recipe-block' ) }
+					placeholder={ __(
+						'Add your directions…',
+						'rmb-recipe-block'
+					) }
 				/>
 			</div>
 		);
@@ -86,7 +95,11 @@ registerBlockType( 'ryelle/recipe-directions', {
 		return (
 			<div className="rmb-recipe-block__directions">
 				<InnerBlocks.Content />
-				<RichText.Content tagName="ol" value={ directions } multiline="li" />
+				<RichText.Content
+					tagName="ol"
+					value={ directions }
+					multiline="li"
+				/>
 			</div>
 		);
 	},
@@ -127,7 +140,11 @@ registerBlockType( 'ryelle/recipe-directions', {
 							className="rmb-recipe-block__directions-header"
 							value={ title }
 						/>
-						<RichText.Content tagName="ol" value={ directions } multiline="li" />
+						<RichText.Content
+							tagName="ol"
+							value={ directions }
+							multiline="li"
+						/>
 					</div>
 				);
 			},
