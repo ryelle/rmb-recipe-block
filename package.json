@@ -20,7 +20,7 @@
   ],
   "main": "build/recipe-block.js",
   "devDependencies": {
-    "@wordpress/browserslist-config": "2.6.0",
+    "@wordpress/browserslist-config": "2.7.0",
     "@wordpress/eslint-plugin": "3.4.1",
     "@wordpress/npm-package-json-lint-config": "2.2.0",
     "@wordpress/scripts": "7.0.1",
