@@ -5,7 +5,10 @@ language: php
 php: 7.1
 
 cache:
-  npm: false
+  directories:
+    - $HOME/.composer/cache
+    - $HOME/.npm
+    - $HOME/.nvm/.cache
 
 notifications:
   email:
