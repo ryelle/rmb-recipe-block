@@ -4,6 +4,12 @@ language: php
 
 php: 7.1
 
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - $HOME/.npm
+    - $HOME/.nvm/.cache
+
 notifications:
   email:
     on_success: never
@@ -13,7 +19,7 @@ before_install:
   - nvm install
 
 install:
-  - npm install
+  - npm ci
   - composer install
 
 script:

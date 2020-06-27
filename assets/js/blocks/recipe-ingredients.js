@@ -40,7 +40,11 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 				type: 'block',
 				blocks: [ 'ryelle/recipe-directions' ],
 				transform: ( { ingredients }, innerBlocks ) => {
-					const heading = find( innerBlocks, { name: 'core/heading' }, {} );
+					const heading = find(
+						innerBlocks,
+						{ name: 'core/heading' },
+						{}
+					);
 
 					return createBlock(
 						'ryelle/recipe-directions',
@@ -62,7 +66,10 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 						[
 							'core/heading',
 							{
-								content: __( 'Ingredients', 'rmb-recipe-block' ),
+								content: __(
+									'Ingredients',
+									'rmb-recipe-block'
+								),
 								level: 3,
 							},
 						],
@@ -72,21 +79,32 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 				<RichText
 					multiline="li"
 					tagName="ul"
-					onChange={ ( nextValues ) => setAttributes( { ingredients: nextValues } ) }
+					onChange={ ( nextValues ) =>
+						setAttributes( { ingredients: nextValues } )
+					}
 					value={ ingredients }
-					placeholder={ __( 'Add your ingredients…', 'rmb-recipe-block' ) }
+					placeholder={ __(
+						'Add your ingredients…',
+						'rmb-recipe-block'
+					) }
 				/>
 			</div>
 		);
 	},
 
 	save( { attributes } ) {
-		const { ingredients } = attributes; /* eslint-disable-line react/prop-types */
+		const {
+			ingredients,
+		} = attributes; /* eslint-disable-line react/prop-types */
 
 		return (
 			<div className="rmb-recipe-block__ingredients">
 				<InnerBlocks.Content />
-				<RichText.Content tagName="ul" value={ ingredients } multiline="li" />
+				<RichText.Content
+					tagName="ul"
+					value={ ingredients }
+					multiline="li"
+				/>
 			</div>
 		);
 	},
@@ -127,7 +145,11 @@ registerBlockType( 'ryelle/recipe-ingredients', {
 							className="rmb-recipe-block__ingredients-header"
 							value={ title }
 						/>
-						<RichText.Content tagName="ul" value={ ingredients } multiline="li" />
+						<RichText.Content
+							tagName="ul"
+							value={ ingredients }
+							multiline="li"
+						/>
 					</div>
 				);
 			},

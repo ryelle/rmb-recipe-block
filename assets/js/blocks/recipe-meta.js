@@ -23,7 +23,8 @@ registerBlockType( 'ryelle/recipe-meta', {
 		serving: {
 			type: 'string',
 			source: 'html',
-			selector: '.rmb-recipe__meta-item-serving .rmb-recipe__meta-item-value',
+			selector:
+				'.rmb-recipe__meta-item-serving .rmb-recipe__meta-item-value',
 			default: '',
 		},
 		showDifficulty: {
@@ -41,7 +42,8 @@ registerBlockType( 'ryelle/recipe-meta', {
 		time: {
 			type: 'string',
 			source: 'html',
-			selector: '.rmb-recipe__meta-item-time .rmb-recipe__meta-item-value',
+			selector:
+				'.rmb-recipe__meta-item-time .rmb-recipe__meta-item-value',
 			default: '',
 		},
 	},
@@ -64,18 +66,24 @@ registerBlockType( 'ryelle/recipe-meta', {
 						<ToggleControl
 							label="Show serving size"
 							checked={ showServing }
-							onChange={ () => setAttributes( { showServing: ! showServing } ) }
+							onChange={ () =>
+								setAttributes( { showServing: ! showServing } )
+							}
 						/>
 						<ToggleControl
 							label="Show time"
 							checked={ showTime }
-							onChange={ () => setAttributes( { showTime: ! showTime } ) }
+							onChange={ () =>
+								setAttributes( { showTime: ! showTime } )
+							}
 						/>
 						<ToggleControl
 							label="Show difficulty"
 							checked={ showDifficulty }
 							onChange={ () =>
-								setAttributes( { showDifficulty: ! showDifficulty } )
+								setAttributes( {
+									showDifficulty: ! showDifficulty,
+								} )
 							}
 						/>
 					</PanelBody>
@@ -85,12 +93,20 @@ registerBlockType( 'ryelle/recipe-meta', {
 						{ showServing && (
 							<div className="rmb-recipe__meta-item rmb-recipe__meta-item-serving">
 								<span className="rmb-recipe__meta-item-label">
-									{ __( 'Serving Size:', 'rmb-recipe-block' ) }
+									{ __(
+										'Serving Size:',
+										'rmb-recipe-block'
+									) }
 								</span>
 								<RichText
-									placeholder={ __( 'Write serving…', 'rmb-recipe-block' ) }
+									placeholder={ __(
+										'Write serving…',
+										'rmb-recipe-block'
+									) }
 									className="rmb-recipe__meta-item-value"
-									onChange={ ( value ) => setAttributes( { serving: value } ) }
+									onChange={ ( value ) =>
+										setAttributes( { serving: value } )
+									}
 									value={ serving }
 								/>
 							</div>
@@ -101,9 +117,14 @@ registerBlockType( 'ryelle/recipe-meta', {
 									{ __( 'Time:', 'rmb-recipe-block' ) }
 								</span>
 								<RichText
-									placeholder={ __( 'Write time…', 'rmb-recipe-block' ) }
+									placeholder={ __(
+										'Write time…',
+										'rmb-recipe-block'
+									) }
 									className="rmb-recipe__meta-item-value"
-									onChange={ ( value ) => setAttributes( { time: value } ) }
+									onChange={ ( value ) =>
+										setAttributes( { time: value } )
+									}
 									value={ time }
 								/>
 							</div>
@@ -114,9 +135,14 @@ registerBlockType( 'ryelle/recipe-meta', {
 									{ __( 'Difficulty:', 'rmb-recipe-block' ) }
 								</span>
 								<RichText
-									placeholder={ __( 'Write difficulty…', 'rmb-recipe-block' ) }
+									placeholder={ __(
+										'Write difficulty…',
+										'rmb-recipe-block'
+									) }
 									className="rmb-recipe__meta-item-value"
-									onChange={ ( value ) => setAttributes( { difficulty: value } ) }
+									onChange={ ( value ) =>
+										setAttributes( { difficulty: value } )
+									}
 									value={ difficulty }
 								/>
 							</div>
