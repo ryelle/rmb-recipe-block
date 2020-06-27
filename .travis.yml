@@ -19,8 +19,7 @@ before_install:
   - nvm install
 
 install:
-  - npm install
-  - npm install
+  - npm ci
   - composer install
 
 script:
