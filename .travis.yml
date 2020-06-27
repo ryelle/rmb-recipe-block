@@ -4,6 +4,9 @@ language: php
 
 php: 7.1
 
+cache:
+  npm: false
+
 notifications:
   email:
     on_success: never
