@@ -1,0 +1,9 @@
+{
+  "name": "ryelle/recipe",
+  "category": "widgets",
+  "supports": {
+    "align": ["wide", "full"]
+  },
+  "editorScript": "rmb-recipe-block-editor",
+  "style": "rmb-recipe-block"
+}

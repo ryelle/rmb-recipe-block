@@ -1,0 +1,21 @@
+{
+  "name": "ryelle/recipe-ingredients",
+  "icon": "editor-ul",
+  "category": "widgets",
+  "parent": ["ryelle/recipe"],
+  "attributes": {
+    "ingredients": {
+      "type": "string",
+      "source": "html",
+      "selector": "ul",
+      "multiline": "li",
+      "default": ""
+    },
+    "level": {
+      "type": "number",
+      "default": 3
+    }
+  },
+  "editorScript": "rmb-recipe-block-editor",
+  "style": "rmb-recipe-block"
+}
