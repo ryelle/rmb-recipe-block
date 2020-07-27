@@ -4,6 +4,6 @@
   "supports": {
     "align": ["wide", "full"]
   },
-  "editorScript": "rmb-recipe-block-editor",
-  "style": "rmb-recipe-block"
+  "editorScript": "file:../../build/recipe-block.js",
+  "style": "file:../../build/recipe-block.css"
 }
