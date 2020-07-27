@@ -1,5 +1,6 @@
 {
   "name": "ryelle/recipe",
+  "title": "Recipe",
   "category": "widgets",
   "supports": {
     "align": ["wide", "full"]

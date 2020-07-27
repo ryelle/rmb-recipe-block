@@ -1,5 +1,6 @@
 {
   "name": "ryelle/recipe-ingredients",
+  "title": "Ingredients",
   "icon": "editor-ul",
   "category": "widgets",
   "parent": ["ryelle/recipe"],
@@ -16,6 +17,6 @@
       "default": 3
     }
   },
-  "editorScript": "file:../../../build/recipe-block.js",
-  "style": "file:../../../build/recipe-block.css"
+  "editorScript": "file:../../../../build/recipe-block.js",
+  "style": "file:../../../../build/recipe-block.css"
 }

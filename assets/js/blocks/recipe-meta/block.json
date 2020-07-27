@@ -1,5 +1,6 @@
 {
   "name": "ryelle/recipe-meta",
+  "title": "Information",
   "icon": "info",
   "category": "widgets",
   "parent": ["ryelle/recipe"],
@@ -35,6 +36,6 @@
       "default": ""
     }
   },
-  "editorScript": "file:../../../build/recipe-block.js",
-  "style": "file:../../../build/recipe-block.css"
+  "editorScript": "file:../../../../build/recipe-block.js",
+  "style": "file:../../../../build/recipe-block.css"
 }
