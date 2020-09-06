@@ -1,0 +1,22 @@
+{
+  "name": "ryelle/recipe-ingredients",
+  "title": "Ingredients",
+  "icon": "editor-ul",
+  "category": "widgets",
+  "parent": ["ryelle/recipe"],
+  "attributes": {
+    "ingredients": {
+      "type": "string",
+      "source": "html",
+      "selector": "ul",
+      "multiline": "li",
+      "default": ""
+    },
+    "level": {
+      "type": "number",
+      "default": 3
+    }
+  },
+  "editorScript": "file:../../../../build/recipe-block.js",
+  "style": "file:../../../../build/recipe-block.css"
+}

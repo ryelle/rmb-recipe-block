@@ -1,0 +1,22 @@
+{
+  "name": "ryelle/recipe-directions",
+  "title": "Directions",
+  "icon": "editor-ol",
+  "category": "widgets",
+  "parent": ["ryelle/recipe"],
+  "attributes": {
+    "directions": {
+      "type": "string",
+      "source": "html",
+      "selector": "ol",
+      "multiline": "li",
+      "default": ""
+    },
+    "level": {
+      "type": "number",
+      "default": 3
+    }
+  },
+  "editorScript": "file:../../../../build/recipe-block.js",
+  "style": "file:../../../../build/recipe-block.css"
+}

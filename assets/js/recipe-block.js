@@ -13,6 +13,9 @@ import '../css/editor.scss';
 import './blocks/recipe-meta';
 import './blocks/recipe-ingredients';
 import './blocks/recipe-directions';
+import metadata from './block.json';
+
+const { name, ...settings } = metadata;
 
 const BLOCKS_TEMPLATE = [
 	[ 'core/image', {} ],
@@ -48,14 +51,11 @@ const BlockSVG = (
 	</svg>
 );
 
-registerBlockType( 'ryelle/recipe', {
+registerBlockType( name, {
+	...settings,
 	title: __( 'Recipe', 'rmb-recipe-block' ),
 	icon: <Icon icon={ BlockSVG } />,
-	category: 'widgets',
 	description: __( 'Show people how to cook!', 'rmb-recipe-block' ),
-	supports: {
-		align: [ 'wide', 'full' ],
-	},
 
 	edit( { className } ) {
 		const classes = [ className, 'rmb-recipe-block' ];

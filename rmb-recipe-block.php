@@ -65,6 +65,7 @@ function rmb_recipe_register_scripts() {
 		$script_info['dependencies'],
 		$script_info['version']
 	);
+	wp_set_script_translations( 'rmb-recipe-block-editor', 'rmb-recipe-block' );
 
 	wp_register_style(
 		'rmb-recipe-block',

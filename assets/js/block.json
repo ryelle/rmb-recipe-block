@@ -1,0 +1,10 @@
+{
+  "name": "ryelle/recipe",
+  "title": "Recipe",
+  "category": "widgets",
+  "supports": {
+    "align": ["wide", "full"]
+  },
+  "editorScript": "file:../../build/recipe-block.js",
+  "style": "file:../../build/recipe-block.css"
+}

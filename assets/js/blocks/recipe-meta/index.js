@@ -7,46 +7,15 @@ import { InspectorControls, RichText } from '@wordpress/block-editor';
 import { PanelBody, ToggleControl } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
 
-registerBlockType( 'ryelle/recipe-meta', {
+/**
+ * Internal dependencies
+ */
+import metadata from './block.json';
+const { name, ...settings } = metadata;
+
+registerBlockType( name, {
+	...settings,
 	title: __( 'Information', 'rmb-recipe-block' ),
-	icon: 'info',
-	category: 'widgets',
-	parent: [ 'ryelle/recipe' ],
-	attributes: {
-		difficulty: {
-			type: 'string',
-			source: 'html',
-			selector:
-				'.rmb-recipe__meta-item-difficulty .rmb-recipe__meta-item-value',
-			default: '',
-		},
-		serving: {
-			type: 'string',
-			source: 'html',
-			selector:
-				'.rmb-recipe__meta-item-serving .rmb-recipe__meta-item-value',
-			default: '',
-		},
-		showDifficulty: {
-			type: 'boolean',
-			default: true,
-		},
-		showServing: {
-			type: 'boolean',
-			default: true,
-		},
-		showTime: {
-			type: 'boolean',
-			default: true,
-		},
-		time: {
-			type: 'string',
-			source: 'html',
-			selector:
-				'.rmb-recipe__meta-item-time .rmb-recipe__meta-item-value',
-			default: '',
-		},
-	},
 
 	edit( { attributes, setAttributes } ) {
 		const {
