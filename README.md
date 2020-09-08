@@ -46,5 +46,3 @@ There are other npm scripts that will come in handy:
 
 - `npm run start` – Run the build process, and keep watching for any file changes.
 - `npm run lint` – Run the JS linter to make sure all code is following code standards. This will also be run on each PR automatically, so it might save a step to run it yourself before making a PR.
-
-Set `SCRIPT_DEBUG` to true, or add `define( 'RMB_RECIPE_DEV_MODE', true );` in wp-config.php to turn on "dev mode". This will trigger a cache-buster on the JS and CSS files, so that you're loading the most current files (only necessary if you're developing on the block).
