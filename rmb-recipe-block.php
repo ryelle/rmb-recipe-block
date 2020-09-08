@@ -15,11 +15,11 @@ defined( 'ABSPATH' ) || die();
 define( 'RMB_RECIPE_VERSION', '1.1.0' );
 
 /**
- * Load up the assets if Gutenberg exists
+ * Load up the assets if the assets file exists
  */
 function rmb_recipe_initialize() {
-	$files_exist = file_exists( plugin_dir_path( __FILE__ ) . '/build/recipe-block.js' );
-	if ( $files_exist ) {
+	$file_exists = file_exists( plugin_dir_path( __FILE__ ) . '/build/recipe-block.asset.php' );
+	if ( $file_exists ) {
 		add_action( 'init', 'rmb_recipe_register_block' );
 	}
 }
@@ -31,12 +31,7 @@ add_action( 'plugins_loaded', 'rmb_recipe_initialize' );
 function rmb_recipe_register_block() {
 	$path        = plugin_dir_path( __FILE__ ) . '/build/recipe-block.js';
 	$deps_path   = plugin_dir_path( __FILE__ ) . '/build/recipe-block.asset.php';
-	$script_info = file_exists( $deps_path )
-		? require $deps_path
-		: array(
-			'dependencies' => array(),
-			'version'      => filemtime( $path ),
-		);
+	$script_info = require $deps_path;
 
 	wp_register_script(
 		'rmb-recipe-block-editor',
