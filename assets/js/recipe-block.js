@@ -29,7 +29,8 @@ const BLOCKS_TEMPLATE = [
 ];
 
 const BLOCKS_ALLOWED = [
-	'core/button',
+	'core/audio',
+	'core/buttons',
 	'core/cover',
 	'core/gallery',
 	'core/heading',
@@ -38,6 +39,7 @@ const BLOCKS_ALLOWED = [
 	'core/paragraph',
 	'core/separator',
 	'core/spacer',
+	'core/table',
 	'core/video',
 	'ryelle/recipe-meta',
 	'ryelle/recipe-ingredients',
