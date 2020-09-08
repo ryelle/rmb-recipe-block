@@ -19,9 +19,9 @@ before_install:
   - nvm install
 
 install:
-  - yarn
+  - npm install
   - composer install
 
 script:
-  - yarn build
-  - yarn ci
+  - npm run build
+  - npm run ci
