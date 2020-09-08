@@ -21,7 +21,6 @@ function rmb_recipe_initialize() {
 	$files_exist = file_exists( plugin_dir_path( __FILE__ ) . '/build/recipe-block.js' );
 	if ( $files_exist ) {
 		add_action( 'init', 'rmb_recipe_register_block' );
-		add_action( 'init', 'rmb_recipe_register_scripts' );
 	}
 }
 add_action( 'plugins_loaded', 'rmb_recipe_initialize' );
@@ -30,19 +29,6 @@ add_action( 'plugins_loaded', 'rmb_recipe_initialize' );
  * Register the recipe block and its scripts.
  */
 function rmb_recipe_register_block() {
-	register_block_type(
-		'ryelle/recipe',
-		array(
-			'editor_script' => 'rmb-recipe-block-editor',
-			'style'         => 'rmb-recipe-block',
-		)
-	);
-}
-
-/**
- * Register extra scripts needed.
- */
-function rmb_recipe_register_scripts() {
 	$path        = plugin_dir_path( __FILE__ ) . '/build/recipe-block.js';
 	$deps_path   = plugin_dir_path( __FILE__ ) . '/build/recipe-block.asset.php';
 	$script_info = file_exists( $deps_path )
@@ -65,5 +51,13 @@ function rmb_recipe_register_scripts() {
 		plugins_url( 'build/recipe-block.css', __FILE__ ),
 		array(),
 		$script_info['version']
+	);
+
+	register_block_type(
+		'ryelle/recipe',
+		array(
+			'editor_script' => 'rmb-recipe-block-editor',
+			'style'         => 'rmb-recipe-block',
+		)
 	);
 }
