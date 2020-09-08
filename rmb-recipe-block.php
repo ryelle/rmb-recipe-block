@@ -3,7 +3,7 @@
  * Plugin Name: Recipe Block
  * Plugin URI: https://github.com/ryelle/rmb-recipe-block
  * Description: A block for displaying recipe content on your site.
- * Version: 1.1.0-dev
+ * Version: 1.1.1-dev
  * Author: Kelly Choyce-Dwan
  * Author URI: https://ryelle.codes
  * Text Domain: rmb-recipe-block
