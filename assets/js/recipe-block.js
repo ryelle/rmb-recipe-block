@@ -55,7 +55,16 @@ registerBlockType( name, {
 	...settings,
 	title: __( 'Recipe', 'rmb-recipe-block' ),
 	icon: <Icon icon={ BlockSVG } />,
-	description: __( 'Show people how to cook!', 'rmb-recipe-block' ),
+	description: __(
+		'A recipe block with ingredients, directions, and more.',
+		'rmb-recipe-block'
+	),
+	keywords: [
+		__( 'food', 'rmb-recipe-block' ),
+		__( 'cooking', 'rmb-recipe-block' ),
+		__( 'ingredients', 'rmb-recipe-block' ),
+		__( 'directions', 'rmb-recipe-block' ),
+	],
 
 	edit( { className } ) {
 		const classes = [ className, 'rmb-recipe-block' ];
