@@ -22,7 +22,13 @@ Head over to [the GitHub repo](https://github.com/ryelle/rmb-recipe-block/) for 
 
 Credit to @melchoyce for designing the recipe template UI.
 
+Plugin icon from [Material.](https://material.io/resources/icons/)
+
 == Screenshots ==
+
+1. The recipe block just added to a post, showing the default recipe template.
+2. A recipe written in the block, showing that like the other blocks, the ingredients is a separate block that can be moved up and down, or removed entirely.
+3. The finished recipe on the front end of the site, using the Twenty Twenty theme.
 
 == Changelog ==
 
