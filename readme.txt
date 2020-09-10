@@ -1,6 +1,6 @@
 === Recipe Block ===
 Contributors: ryelle
-Stable tag: trunk
+Stable tag: 1.1.0
 Requires at least: 5.5
 Tested up to: 5.5
 Requires PHP: 7.0
