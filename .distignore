@@ -5,4 +5,13 @@
 /vendor
 
 .distignore
+.editorconfig
 .gitignore
+.nvmrc
+.prettierrc.js
+.travis.yml
+composer.json
+composer.lock
+package-lock.json
+phpcs.xml.dist
+renovate.json
