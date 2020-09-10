@@ -12,7 +12,7 @@
  */
 
 defined( 'ABSPATH' ) || die();
-define( 'RMB_RECIPE_VERSION', '1.1.0' );
+define( 'RMB_RECIPE_VERSION', '1.1.1' );
 
 /**
  * Load up the assets if the assets file exists
