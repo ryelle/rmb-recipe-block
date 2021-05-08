@@ -23,7 +23,7 @@
   "main": "build/recipe-block.js",
   "devDependencies": {
     "@wordpress/scripts": "15.0.1",
-    "concurrently": "6.0.2",
+    "concurrently": "6.1.0",
     "prettier": "npm:wp-prettier@2.0.5"
   },
   "scripts": {
