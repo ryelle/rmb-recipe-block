@@ -37,7 +37,7 @@
     "lint:php": "composer run lint",
     "lint:php:fix": "composer run format",
     "lint": "concurrently \"npm run lint:js\" \"npm run lint:css\" \"npm run lint:php\"",
-    "ci": "npm run lint"
+    "ci": "npm run lint:js && npm run lint:css"
   },
   "stylelint": {
     "rules": {
