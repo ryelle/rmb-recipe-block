@@ -1,5 +1,11 @@
 name: Linting
 
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
 env:
   PHP_VERSION: "7.4"
   COMPOSER_VERSION: "2"
