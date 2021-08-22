@@ -1,6 +1,6 @@
 === Recipe Block ===
 Contributors: ryelle
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 Requires at least: 5.5
 Tested up to: 5.8
 Requires PHP: 7.0
@@ -31,6 +31,9 @@ Plugin icon from [Material.](https://material.io/resources/icons/)
 3. The finished recipe on the front end of the site, using the Twenty Twenty theme.
 
 == Changelog ==
+
+= 1.1.2 =
+* Update dependencies and compatibility with WordPress 5.8
 
 = 1.1.1 =
 * Fix minor issue with version number
