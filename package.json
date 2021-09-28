@@ -10,7 +10,7 @@
     "url": "https://github.com:ryelle/rmb-recipe-block.git"
   },
   "engines": {
-    "node": "14.17.6",
+    "node": "14.18.0",
     "npm": "7.24.1"
   },
   "files": [
