@@ -1,10 +1,22 @@
 {
-  "name": "ryelle/recipe",
-  "title": "Recipe",
-  "category": "widgets",
-  "supports": {
-    "align": ["wide", "full"]
-  },
-  "editorScript": "file:../../build/recipe-block.js",
-  "style": "file:../../build/recipe-block.css"
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "ryelle/recipe",
+	"title": "Recipe",
+	"category": "widgets",
+	"keywords": [ "food", "cooking", "ingredients", "directions" ],
+	"description": "A recipe block with ingredients, directions, and more.",
+	"textdomain": "rmb-recipe-block",
+	"supports": {
+		"align": [ "wide", "full" ],
+		"spacing": {
+			"blockGap": true,
+			"margin": [ "top", "bottom" ],
+			"__experimentalDefaultControls": {
+				"blockGap": true
+			}
+		}
+	},
+	"editorScript": "recipe-block",
+	"style": "recipe-block"
 }

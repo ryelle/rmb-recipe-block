@@ -2,7 +2,7 @@
  * External Dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks, useBlockProps } from '@wordpress/block-editor';
 import { Icon } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
 
@@ -10,12 +10,12 @@ import { registerBlockType } from '@wordpress/blocks';
  * Internal dependencies
  */
 import '../css/editor.scss';
-import './blocks/recipe-meta';
-import './blocks/recipe-ingredients';
 import './blocks/recipe-directions';
+import './blocks/recipe-ingredients';
+import './blocks/recipe-meta';
 import metadata from './block.json';
 
-const { name, ...settings } = metadata;
+const { name } = metadata;
 
 const BLOCKS_TEMPLATE = [
 	[ 'core/image', {} ],
@@ -54,25 +54,12 @@ const BlockSVG = (
 );
 
 registerBlockType( name, {
-	...settings,
-	title: __( 'Recipe', 'rmb-recipe-block' ),
 	icon: <Icon icon={ BlockSVG } />,
-	description: __(
-		'A recipe block with ingredients, directions, and more.',
-		'rmb-recipe-block'
-	),
-	keywords: [
-		__( 'food', 'rmb-recipe-block' ),
-		__( 'cooking', 'rmb-recipe-block' ),
-		__( 'ingredients', 'rmb-recipe-block' ),
-		__( 'directions', 'rmb-recipe-block' ),
-	],
-
-	edit( { className } ) {
-		const classes = [ className, 'rmb-recipe-block' ];
-
+	edit() {
+		// eslint-disable-next-line react-hooks/rules-of-hooks -- This is a component.
+		const blockProps = useBlockProps( { className: 'rmb-recipe-block' } );
 		return (
-			<div className={ classes.join( ' ' ) }>
+			<div { ...blockProps }>
 				<InnerBlocks
 					template={ BLOCKS_TEMPLATE }
 					templateLock={ false }
@@ -81,13 +68,9 @@ registerBlockType( name, {
 			</div>
 		);
 	},
-
-	save( props ) {
-		const {
-			align,
-		} = props.attributes; /* eslint-disable-line react/prop-types */
+	save() {
 		return (
-			<div className={ align ? `align${ align }` : '' }>
+			<div { ...useBlockProps.save() }>
 				<InnerBlocks.Content />
 			</div>
 		);

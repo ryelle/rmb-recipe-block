@@ -3,7 +3,11 @@
  */
 import { __ } from '@wordpress/i18n';
 import { Fragment } from '@wordpress/element';
-import { InspectorControls, RichText } from '@wordpress/block-editor';
+import {
+	InspectorControls,
+	RichText,
+	useBlockProps,
+} from '@wordpress/block-editor';
 import { PanelBody, ToggleControl } from '@wordpress/components';
 import { registerBlockType } from '@wordpress/blocks';
 
@@ -11,12 +15,9 @@ import { registerBlockType } from '@wordpress/blocks';
  * Internal dependencies
  */
 import metadata from './block.json';
-const { name, ...settings } = metadata;
+const { name } = metadata;
 
 registerBlockType( name, {
-	...settings,
-	title: __( 'Information', 'rmb-recipe-block' ),
-
 	edit( { attributes, setAttributes } ) {
 		const {
 			difficulty,
@@ -27,9 +28,15 @@ registerBlockType( name, {
 			time,
 		} = attributes;
 		const showingAny = showDifficulty || showServing || showTime;
+		// eslint-disable-next-line react-hooks/rules-of-hooks -- This is a component.
+		const blockProps = useBlockProps( {
+			className: showingAny
+				? 'rmb-recipe__meta-list'
+				: 'rmb-recipe__meta-list rmb-recipe__meta-list-empty',
+		} );
 
 		return (
-			<Fragment>
+			<>
 				<InspectorControls>
 					<PanelBody title={ __( 'Fields', 'rmb-recipe-block' ) }>
 						<ToggleControl
@@ -57,80 +64,84 @@ registerBlockType( name, {
 						/>
 					</PanelBody>
 				</InspectorControls>
-				{ showingAny ? (
-					<div className="rmb-recipe__meta-list">
-						{ showServing && (
-							<div className="rmb-recipe__meta-item rmb-recipe__meta-item-serving">
-								<span className="rmb-recipe__meta-item-label">
-									{ __(
-										'Serving Size:',
-										'rmb-recipe-block'
-									) }
-								</span>
-								<RichText
-									placeholder={ __(
-										'Write serving…',
-										'rmb-recipe-block'
-									) }
-									className="rmb-recipe__meta-item-value"
-									onChange={ ( value ) =>
-										setAttributes( { serving: value } )
-									}
-									value={ serving }
-								/>
-							</div>
-						) }
-						{ showTime && (
-							<div className="rmb-recipe__meta-item rmb-recipe__meta-item-time">
-								<span className="rmb-recipe__meta-item-label">
-									{ __( 'Time:', 'rmb-recipe-block' ) }
-								</span>
-								<RichText
-									placeholder={ __(
-										'Write time…',
-										'rmb-recipe-block'
-									) }
-									className="rmb-recipe__meta-item-value"
-									onChange={ ( value ) =>
-										setAttributes( { time: value } )
-									}
-									value={ time }
-								/>
-							</div>
-						) }
-						{ showDifficulty && (
-							<div className="rmb-recipe__meta-item rmb-recipe__meta-item-difficulty">
-								<span className="rmb-recipe__meta-item-label">
-									{ __( 'Difficulty:', 'rmb-recipe-block' ) }
-								</span>
-								<RichText
-									placeholder={ __(
-										'Write difficulty…',
-										'rmb-recipe-block'
-									) }
-									className="rmb-recipe__meta-item-value"
-									onChange={ ( value ) =>
-										setAttributes( { difficulty: value } )
-									}
-									value={ difficulty }
-								/>
-							</div>
-						) }
-					</div>
-				) : (
-					<div className="rmb-recipe__meta-list rmb-recipe__meta-list-empty">
+				<div { ...blockProps }>
+					{ showingAny ? (
+						<>
+							{ showServing && (
+								<div className="rmb-recipe__meta-item rmb-recipe__meta-item-serving">
+									<span className="rmb-recipe__meta-item-label">
+										{ __(
+											'Serving Size:',
+											'rmb-recipe-block'
+										) }
+									</span>
+									<RichText
+										placeholder={ __(
+											'Write serving…',
+											'rmb-recipe-block'
+										) }
+										className="rmb-recipe__meta-item-value"
+										onChange={ ( value ) =>
+											setAttributes( { serving: value } )
+										}
+										value={ serving }
+									/>
+								</div>
+							) }
+							{ showTime && (
+								<div className="rmb-recipe__meta-item rmb-recipe__meta-item-time">
+									<span className="rmb-recipe__meta-item-label">
+										{ __( 'Time:', 'rmb-recipe-block' ) }
+									</span>
+									<RichText
+										placeholder={ __(
+											'Write time…',
+											'rmb-recipe-block'
+										) }
+										className="rmb-recipe__meta-item-value"
+										onChange={ ( value ) =>
+											setAttributes( { time: value } )
+										}
+										value={ time }
+									/>
+								</div>
+							) }
+							{ showDifficulty && (
+								<div className="rmb-recipe__meta-item rmb-recipe__meta-item-difficulty">
+									<span className="rmb-recipe__meta-item-label">
+										{ __(
+											'Difficulty:',
+											'rmb-recipe-block'
+										) }
+									</span>
+									<RichText
+										placeholder={ __(
+											'Write difficulty…',
+											'rmb-recipe-block'
+										) }
+										className="rmb-recipe__meta-item-value"
+										onChange={ ( value ) =>
+											setAttributes( {
+												difficulty: value,
+											} )
+										}
+										value={ difficulty }
+									/>
+								</div>
+							) }
+						</>
+					) : (
 						<em>
 							{ __(
 								'Nothing to show. Turn on a meta field, or remove this block.',
 								'rmb-recipe-block'
 							) }
 						</em>
-					</div>
-				) }
-			</Fragment>
+					) }
+				</div>
+			</>
 		);
 	},
-
 	save( props ) {
 		const {
 			difficulty,
@@ -145,7 +156,11 @@ registerBlockType( name, {
 		}
 
 		return (
-			<div className="rmb-recipe__meta-list">
+			<div
+				{ ...useBlockProps.save( {
+					className: 'rmb-recipe__meta-list',
+				} ) }
+			>
 				{ showServing && (
 					<div className="rmb-recipe__meta-item rmb-recipe__meta-item-serving">
 						<span className="rmb-recipe__meta-item-label">

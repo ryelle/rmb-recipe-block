@@ -34,25 +34,21 @@ function rmb_recipe_register_block() {
 	$script_info = require $deps_path;
 
 	wp_register_script(
-		'rmb-recipe-block-editor',
+		'recipe-block',
 		plugins_url( 'build/recipe-block.js', __FILE__ ),
 		$script_info['dependencies'],
 		$script_info['version']
 	);
-	wp_set_script_translations( 'rmb-recipe-block-editor', 'rmb-recipe-block' );
+	wp_set_script_translations( 'recipe-block', 'rmb-recipe-block' );
 
 	wp_register_style(
-		'rmb-recipe-block',
+		'recipe-block',
 		plugins_url( 'build/recipe-block.css', __FILE__ ),
 		array(),
 		$script_info['version']
 	);
-
-	register_block_type(
-		'ryelle/recipe',
-		array(
-			'editor_script' => 'rmb-recipe-block-editor',
-			'style'         => 'rmb-recipe-block',
-		)
-	);
+	register_block_type( plugin_dir_path( __FILE__ ) . '/assets/js' );
+	register_block_type( plugin_dir_path( __FILE__ ) . '/assets/js/blocks/recipe-directions' );
+	register_block_type( plugin_dir_path( __FILE__ ) . '/assets/js/blocks/recipe-ingredients' );
+	register_block_type( plugin_dir_path( __FILE__ ) . '/assets/js/blocks/recipe-meta' );
 }

@@ -2,56 +2,30 @@
  * External Dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { find } from 'lodash';
-import { InnerBlocks, RichText } from '@wordpress/block-editor';
-import { createBlock, registerBlockType } from '@wordpress/blocks';
+import { InnerBlocks, RichText, useBlockProps } from '@wordpress/block-editor';
+import { registerBlockType } from '@wordpress/blocks';
 
 /**
  * Internal dependencies
  */
+import deprecated from './deprecated';
 import metadata from './block.json';
-const { name, ...settings } = metadata;
+import transforms from './transforms';
+
+const { name } = metadata;
 
 registerBlockType( name, {
-	...settings,
-	title: __( 'Ingredients', 'rmb-recipe-block' ),
-
-	transforms: {
-		to: [
-			{
-				type: 'block',
-				blocks: [ 'core/list' ],
-				transform: ( { ingredients } ) =>
-					createBlock( 'core/list', {
-						values: ingredients,
-						ordered: false,
-					} ),
-			},
-			{
-				type: 'block',
-				blocks: [ 'ryelle/recipe-directions' ],
-				transform: ( { ingredients }, innerBlocks ) => {
-					const heading = find(
-						innerBlocks,
-						{ name: 'core/heading' },
-						{}
-					);
-
-					return createBlock(
-						'ryelle/recipe-directions',
-						{ directions: ingredients },
-						[ heading ]
-					);
-				},
-			},
-		],
-	},
-
+	deprecated,
+	transforms,
 	edit( { attributes, setAttributes } ) {
 		const { ingredients } = attributes;
+		// eslint-disable-next-line react-hooks/rules-of-hooks -- This is a component.
+		const blockProps = useBlockProps( {
+			className: 'rmb-recipe-block__ingredients',
+		} );
 
 		return (
-			<div className="rmb-recipe-block__ingredients">
+			<div { ...blockProps }>
 				<InnerBlocks
 					template={ [
 						[
@@ -82,14 +56,17 @@ registerBlockType( name, {
 			</div>
 		);
 	},
-
 	save( { attributes } ) {
 		const {
 			ingredients,
 		} = attributes; /* eslint-disable-line react/prop-types */
 
 		return (
-			<div className="rmb-recipe-block__ingredients">
+			<div
+				{ ...useBlockProps.save( {
+					className: 'rmb-recipe-block__ingredients',
+				} ) }
+			>
 				<InnerBlocks.Content />
 				<RichText.Content
 					tagName="ul"
@@ -99,63 +76,4 @@ registerBlockType( name, {
 			</div>
 		);
 	},
-
-	deprecated: [
-		{
-			attributes: {
-				ingredients: {
-					type: 'string',
-					source: 'html',
-					selector: 'ul',
-					multiline: 'li',
-					default: '',
-				},
-				level: {
-					type: 'number',
-					default: 3,
-				},
-				title: {
-					type: 'string',
-					source: 'html',
-					selector: '.rmb-recipe-block__ingredients-header',
-					default: __( 'Ingredients', 'rmb-recipe-block' ),
-				},
-			},
-
-			save( { attributes } ) {
-				const {
-					ingredients,
-					level,
-					title,
-				} = attributes; /* eslint-disable-line react/prop-types */
-
-				return (
-					<div className="rmb-recipe-block__ingredients">
-						<RichText.Content
-							tagName={ `h${ level }` }
-							className="rmb-recipe-block__ingredients-header"
-							value={ title }
-						/>
-						<RichText.Content
-							tagName="ul"
-							value={ ingredients }
-							multiline="li"
-						/>
-					</div>
-				);
-			},
-
-			migrate( attributes ) {
-				return [
-					{ ingredients: attributes.ingredients },
-					[
-						createBlock( 'core/heading', {
-							content: attributes.title,
-							level: attributes.level,
-						} ),
-					],
-				];
-			},
-		},
-	],
 } );
