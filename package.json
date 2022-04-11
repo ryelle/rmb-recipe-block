@@ -24,7 +24,7 @@
 	"devDependencies": {
 		"@wordpress/scripts": "22.4.0",
 		"concurrently": "7.1.0",
-		"eslint-plugin-prettier": "^4.0.0"
+		"eslint-plugin-prettier": "4.0.0"
 	},
 	"scripts": {
 		"build": "wp-scripts build recipe-block=./assets/js/recipe-block.js",
