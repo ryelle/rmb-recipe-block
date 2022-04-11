@@ -47,3 +47,6 @@ tests/cli/vendor
 
 # Local files
 /bin/
+
+# Built files
+/build
