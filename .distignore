@@ -1,6 +1,6 @@
-/.wordpress-org
 /.git
 /.github
+/.wordpress-org
 /node_modules
 /vendor
 
@@ -14,4 +14,5 @@ composer.json
 composer.lock
 package-lock.json
 phpcs.xml.dist
+README.md
 renovate.json
