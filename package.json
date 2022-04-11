@@ -24,16 +24,14 @@
 	"devDependencies": {
 		"@wordpress/scripts": "22.4.0",
 		"concurrently": "7.1.0",
-		"prettier": "npm:wp-prettier@2.0.5"
+		"eslint-plugin-prettier": "^4.0.0"
 	},
 	"scripts": {
 		"build": "wp-scripts build recipe-block=./assets/js/recipe-block.js",
 		"start": "wp-scripts start recipe-block=./assets/js/recipe-block.js",
-		"format:js": "wp-scripts format-js assets/js/**/*.js",
+		"format:js": "wp-scripts format assets/js/**/*.js",
 		"lint:css": "wp-scripts lint-style assets/css/*",
-		"lint:css:fix": "wp-scripts lint-style assets/css/* --fix",
 		"lint:js": "wp-scripts lint-js assets/js/**/*.js",
-		"lint:js:fix": "wp-scripts format-js assets/js/**/*.js",
 		"lint:php": "composer run lint",
 		"lint:php:fix": "composer run format",
 		"lint": "concurrently \"npm run lint:js\" \"npm run lint:css\" \"npm run lint:php\"",
