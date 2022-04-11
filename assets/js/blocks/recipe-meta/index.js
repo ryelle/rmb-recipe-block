@@ -38,7 +38,7 @@ registerBlockType( name, {
 		return (
 			<>
 				<InspectorControls>
-					<PanelBody title={ __( 'Fields', 'rmb-recipe-block' ) }>
+					<PanelBody title={ __( 'Fields', 'recipe-block' ) }>
 						<ToggleControl
 							label="Show serving size"
 							checked={ showServing }
@@ -72,13 +72,13 @@ registerBlockType( name, {
 									<span className="rmb-recipe__meta-item-label">
 										{ __(
 											'Serving Size:',
-											'rmb-recipe-block'
+											'recipe-block'
 										) }
 									</span>
 									<RichText
 										placeholder={ __(
 											'Write serving…',
-											'rmb-recipe-block'
+											'recipe-block'
 										) }
 										className="rmb-recipe__meta-item-value"
 										onChange={ ( value ) =>
@@ -91,12 +91,12 @@ registerBlockType( name, {
 							{ showTime && (
 								<div className="rmb-recipe__meta-item rmb-recipe__meta-item-time">
 									<span className="rmb-recipe__meta-item-label">
-										{ __( 'Time:', 'rmb-recipe-block' ) }
+										{ __( 'Time:', 'recipe-block' ) }
 									</span>
 									<RichText
 										placeholder={ __(
 											'Write time…',
-											'rmb-recipe-block'
+											'recipe-block'
 										) }
 										className="rmb-recipe__meta-item-value"
 										onChange={ ( value ) =>
@@ -109,15 +109,12 @@ registerBlockType( name, {
 							{ showDifficulty && (
 								<div className="rmb-recipe__meta-item rmb-recipe__meta-item-difficulty">
 									<span className="rmb-recipe__meta-item-label">
-										{ __(
-											'Difficulty:',
-											'rmb-recipe-block'
-										) }
+										{ __( 'Difficulty:', 'recipe-block' ) }
 									</span>
 									<RichText
 										placeholder={ __(
 											'Write difficulty…',
-											'rmb-recipe-block'
+											'recipe-block'
 										) }
 										className="rmb-recipe__meta-item-value"
 										onChange={ ( value ) =>
@@ -134,7 +131,7 @@ registerBlockType( name, {
 						<em>
 							{ __(
 								'Nothing to show. Turn on a meta field, or remove this block.',
-								'rmb-recipe-block'
+								'recipe-block'
 							) }
 						</em>
 					) }
@@ -164,7 +161,7 @@ registerBlockType( name, {
 				{ showServing && (
 					<div className="rmb-recipe__meta-item rmb-recipe__meta-item-serving">
 						<span className="rmb-recipe__meta-item-label">
-							{ __( 'Serving Size:', 'rmb-recipe-block' ) }
+							{ __( 'Serving Size:', 'recipe-block' ) }
 						</span>
 						<RichText.Content
 							tagName="div"
@@ -176,7 +173,7 @@ registerBlockType( name, {
 				{ showTime && (
 					<div className="rmb-recipe__meta-item rmb-recipe__meta-item-time">
 						<span className="rmb-recipe__meta-item-label">
-							{ __( 'Time:', 'rmb-recipe-block' ) }
+							{ __( 'Time:', 'recipe-block' ) }
 						</span>
 						<RichText.Content
 							tagName="div"
@@ -188,7 +185,7 @@ registerBlockType( name, {
 				{ showDifficulty && (
 					<div className="rmb-recipe__meta-item rmb-recipe__meta-item-difficulty">
 						<span className="rmb-recipe__meta-item-label">
-							{ __( 'Difficulty:', 'rmb-recipe-block' ) }
+							{ __( 'Difficulty:', 'recipe-block' ) }
 						</span>
 						<RichText.Content
 							tagName="div"

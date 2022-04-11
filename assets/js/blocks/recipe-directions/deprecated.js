@@ -23,7 +23,7 @@ export default [
 				type: 'string',
 				source: 'html',
 				selector: '.rmb-recipe-block__directions-header',
-				default: __( 'Directions', 'rmb-recipe-block' ),
+				default: __( 'Directions', 'recipe-block' ),
 			},
 		},
 

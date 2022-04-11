@@ -19,10 +19,7 @@ const { name } = metadata;
 
 const BLOCKS_TEMPLATE = [
 	[ 'core/image', {} ],
-	[
-		'core/heading',
-		{ placeholder: __( 'Recipe Title', 'rmb-recipe-block' ) },
-	],
+	[ 'core/heading', { placeholder: __( 'Recipe Title', 'recipe-block' ) } ],
 	[ 'ryelle/recipe-meta' ],
 	[ 'ryelle/recipe-ingredients' ],
 	[ 'ryelle/recipe-directions' ],

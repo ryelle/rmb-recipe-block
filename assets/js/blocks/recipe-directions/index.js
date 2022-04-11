@@ -31,7 +31,7 @@ registerBlockType( name, {
 						[
 							'core/heading',
 							{
-								content: __( 'Directions', 'rmb-recipe-block' ),
+								content: __( 'Directions', 'recipe-block' ),
 								level: 3,
 							},
 						],
@@ -45,10 +45,7 @@ registerBlockType( name, {
 						setAttributes( { directions: nextValues } )
 					}
 					value={ directions }
-					placeholder={ __(
-						'Add your directions…',
-						'rmb-recipe-block'
-					) }
+					placeholder={ __( 'Add your directions…', 'recipe-block' ) }
 				/>
 			</div>
 		);

@@ -31,10 +31,7 @@ registerBlockType( name, {
 						[
 							'core/heading',
 							{
-								content: __(
-									'Ingredients',
-									'rmb-recipe-block'
-								),
+								content: __( 'Ingredients', 'recipe-block' ),
 								level: 3,
 							},
 						],
@@ -50,7 +47,7 @@ registerBlockType( name, {
 					value={ ingredients }
 					placeholder={ __(
 						'Add your ingredients…',
-						'rmb-recipe-block'
+						'recipe-block'
 					) }
 				/>
 			</div>

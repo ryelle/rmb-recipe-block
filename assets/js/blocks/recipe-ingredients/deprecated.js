@@ -23,7 +23,7 @@ export default [
 				type: 'string',
 				source: 'html',
 				selector: '.rmb-recipe-block__ingredients-header',
-				default: __( 'Ingredients', 'rmb-recipe-block' ),
+				default: __( 'Ingredients', 'recipe-block' ),
 			},
 		},
 
