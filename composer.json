@@ -19,7 +19,7 @@
 		"wp-coding-standards/wpcs": "2.3.0"
 	},
 	"require": {
-		"composer/installers": "2.1.1"
+		"composer/installers": "2.3.0"
 	},
 	"scripts": {
 		"format": "phpcbf --standard=phpcs.xml.dist --report-summary --report-source",
